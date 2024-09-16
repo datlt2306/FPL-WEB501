@@ -5,5 +5,29 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Document</title>
     </head>
-    <body></body>
+    <body>
+        <script>
+            // function cauHon() {
+            //     return new Promise((resolve, reject) => {
+            //         const isCauHon = false;
+            //         if (!isCauHon) {
+            //             return reject("Không cầu hôn");
+            //         }
+            //         setTimeout(() => {
+            //             resolve("Gật đầu");
+            //         }, 2000);
+            //     });
+            // }
+            // cauHon()
+            //     .then((ketQua1) => ketQua1)
+            //     .then((ketQua2) => ketQua2 + "Ôm")
+            //     .then((ketQua3) => console.log(ketQua3 + "Về nhà đi nghỉ"))
+            //     .catch((ketQuaFail) => console.log(ketQuaFail));
+
+            fetch(`https://6110f09bc38a0900171f0ed0.mockapi.io/products`)
+                .then((response) => response.json())
+                .then((data) => console.log(data))
+                .catch((error) => console.log(error));
+        </script>
+    </body>
 </html>

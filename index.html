@@ -6,28 +6,67 @@
         <title>Document</title>
     </head>
     <body>
+        <button id="addBtn">Thêm</button>
+        <button id="editBtn">Cập nhật</button>
+        <button id="deleteBtn">Xóa</button>
+        <div id="products"></div>
         <script>
-            // function cauHon() {
-            //     return new Promise((resolve, reject) => {
-            //         const isCauHon = false;
-            //         if (!isCauHon) {
-            //             return reject("Không cầu hôn");
-            //         }
-            //         setTimeout(() => {
-            //             resolve("Gật đầu");
-            //         }, 2000);
-            //     });
-            // }
-            // cauHon()
-            //     .then((ketQua1) => ketQua1)
-            //     .then((ketQua2) => ketQua2 + "Ôm")
-            //     .then((ketQua3) => console.log(ketQua3 + "Về nhà đi nghỉ"))
-            //     .catch((ketQuaFail) => console.log(ketQuaFail));
+            const productsEl = document.querySelector("#products");
+            const addBtn = document.querySelector("#addBtn");
+            const editBtn = document.querySelector("#editBtn");
+            const deleteBtn = document.querySelector("#deleteBtn");
 
-            fetch(`https://6110f09bc38a0900171f0ed0.mockapi.io/products`)
-                .then((response) => response.json())
-                .then((data) => console.log(data))
-                .catch((error) => console.log(error));
+            const getProducts = async () => {
+                const response = await fetch(`http://localhost:3000/products`);
+                const products = await response.json();
+                productsEl.innerHTML = products
+                    .map(
+                        (product) => `
+                    <div>${product.name}</div>
+                `
+                    )
+                    .join("");
+            };
+            getProducts();
+
+            // Thêm
+            addBtn.addEventListener("click", async () => {
+                const product = {
+                    name: "Product mới",
+                    price: 1000,
+                };
+                const response = await fetch(`http://localhost:3000/products`, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(product),
+                });
+                const data = await response.json();
+                console.log(data);
+            });
+            // Cập nhật
+            editBtn.addEventListener("click", async () => {
+                const response = await fetch(`http://localhost:3000/products/4`, {
+                    method: "PUT",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                        name: "Product cập nhật",
+                    }),
+                });
+                const data = await response.json();
+                alert("Cập nhật thành công");
+            });
+            // Xóa
+            deleteBtn.addEventListener("click", async () => {
+                const response = await fetch(`http://localhost:3000/products/4`, {
+                    method: "DELETE",
+                });
+                const data = await response.json();
+                alert("Xóa thành công");
+            });
         </script>
     </body>
 </html>

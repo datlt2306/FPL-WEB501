@@ -2,79 +2,18 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8" />
+        <link rel="icon" type="image/svg+xml" href="/vite.svg" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Document</title>
+        <title>Vite + React</title>
     </head>
     <body>
-        <button id="addBtn">Thêm</button>
-        <button id="editBtn">Cập nhật</button>
-        <button id="deleteBtn">Xóa</button>
-        <div id="products"></div>
-        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-        <script>
-            const productsEl = document.querySelector("#products");
-            const addBtn = document.querySelector("#addBtn");
-            const editBtn = document.querySelector("#editBtn");
-            const deleteBtn = document.querySelector("#deleteBtn");
-
-            const getProducts = async () => {
-                const { data } = await axios.get(`http://localhost:3000/products`);
-                productsEl.innerHTML = data
-                    .map((product) => ` <div>${product.name}</div>`)
-                    .join("");
-            };
-            getProducts();
-            // Thêm
-            addBtn.addEventListener("click", async () => {
-                // const product = {
-                //     name: "Product mới",
-                //     price: 1000,
-                // };
-                // const response = await fetch(`http://localhost:3000/products`, {
-                //     method: "POST",
-                //     headers: {
-                //         "Content-Type": "application/json",
-                //     },
-                //     body: JSON.stringify(product),
-                // });
-                // const data = await response.json();
-                // console.log(data);
-
-                await axios.post(`http://localhost:3000/products`, {
-                    name: "Product mới",
-                    price: 1000,
-                });
-                alert("Thêm thành công");
-            });
-            // Cập nhật
-            editBtn.addEventListener("click", async () => {
-                // const response = await fetch(`http://localhost:3000/products/4`, {
-                //     method: "PUT",
-                //     headers: {
-                //         "Content-Type": "application/json",
-                //     },
-                //     body: JSON.stringify({
-                //         name: "Product cập nhật",
-                //     }),
-                // });
-                // const data = await response.json();
-                // alert("Cập nhật thành công");
-
-                await axios.put(`http://localhost:3000/products/4`, {
-                    name: "Product cập nhật",
-                });
-                alert("Cập nhật thành công");
-            });
-            // Xóa
-            deleteBtn.addEventListener("click", async () => {
-                // const response = await fetch(`http://localhost:3000/products/4`, {
-                //     method: "DELETE",
-                // });
-                // const data = await response.json();
-                // alert("Xóa thành công");
-                await axios.delete(`http://localhost:3000/products/4`);
-                alert("Xóa thành công");
-            });
-        </script>
+        <div id="root"></div>
+        <script type="module" src="/src/main.jsx"></script>
     </body>
 </html>
+<!-- 
+B1: npm create vite@latest demo -- --template react 
+B2: cd demo => truy cap vao thu muc demo
+B3: npm i => Cài đặt các thư viện cần thiết
+B4: npm run dev => Chạy project
+-->

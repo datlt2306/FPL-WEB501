@@ -1,15 +1,17 @@
+import { useState } from "react";
 import "./App.css";
 import ShowInfo from "./components/ShowInfo";
 
 function App() {
-    const student = {
-        name: "Le Trong Dat",
+    const [color, setColor] = useState("red");
+    const handleClick = () => {
+        setColor("blue");
     };
     return (
         <>
-            <ShowInfo student={student} />
+            <button onClick={handleClick}>Change</button>
+            <div style={{ background: color, width: 200, height: 200 }}>Content</div>
         </>
     );
 }
-
 export default App;

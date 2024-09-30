@@ -14,12 +14,16 @@ function App() {
             <div style={{ background: color, width: 200, height: 200 }}>Content</div>
             <ul>
                 {todos.map((todo) => (
-                    <li key={todo.id}>{todo.title}</li>
+                    <li key={todo.id}>
+                        {todo.title}
+                        <button
+                            onClick={() => setTodos(todos.filter((item) => item.id !== todo.id))}
+                        >
+                            Remove Todo
+                        </button>
+                    </li>
                 ))}
             </ul>
-            <button onClick={() => setTodos(todos.filter((todo) => todo.id !== 2))}>
-                Remove Todo
-            </button>
         </>
     );
 }

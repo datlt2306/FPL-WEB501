@@ -1,6 +1,5 @@
 import { useState } from "react";
 import "./App.css";
-import ShowInfo from "./components/ShowInfo";
 
 function App() {
     const [color, setColor] = useState("red");

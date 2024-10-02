@@ -2,7 +2,7 @@ import { useState } from "react";
 import "./App.css";
 
 function App() {
-    const [valueInput, setValueInput] = useState("");
+    const [product, setProduct] = useState({});
     const [products, setProducts] = useState([
         { id: 1, name: "Iphone 12", price: 1000, status: true }, // item = 0
         { id: 2, name: "Iphone 13", price: 2000, status: true }, // item = 1
@@ -17,17 +17,31 @@ function App() {
 
     const onSubmit = (e) => {
         e.preventDefault();
-        if (!valueInput) return;
-        setProducts([
-            ...products,
-            { id: products.length + 1, name: valueInput, price: 3000, status: false },
-        ]);
+        if (!product) return;
+        setProducts([...products, { id: products.length + 1, ...product }]);
+    };
+
+    const onChange = (e) => {
+        const { name, value } = e.target;
+        setProduct({ ...product, [name]: value });
     };
     return (
         <>
-            {JSON.stringify(valueInput)}
+            {JSON.stringify(products)}
             <form onSubmit={onSubmit}>
-                <input type="text" onChange={(e) => setValueInput(e.target.value)} />
+                <div>
+                    <label htmlFor="">Tên sản phẩm</label>
+                    <input type="text" name="name" onChange={onChange} />
+                </div>
+                <div>
+                    <label htmlFor="">Giá sản phẩm</label>
+                    <input type="number" name="price" onChange={onChange} />
+                </div>
+                <div>
+                    <input type="radio" name="status" value={true} onChange={onChange} /> Còn hàng
+                    <input type="radio" name="status" value={false} onChange={onChange} /> Hết hàng
+                </div>
+
                 <button>Thêm</button>
             </form>
             <table>
@@ -70,4 +84,13 @@ export default App;
  * B1: Tạo form
  * B2: Lấy giá trị từ input
  * B3: Thêm sản phẩm mới vào mảng products
+ */
+
+/**
+ * B1: Tạo các input control
+ * B2: set name cho input control và sự kiện onChange cho từng control
+ * B3: Tạo hàm onChange để lấy giá trị từ input control
+ * B4: Sử dụng cú pháp computed property name để lấy giá trị từ input control
+ * B5: set giá trị cho state product
+ * B6: Sử dụng state product để thêm sản phẩm mới vào mảng products
  */

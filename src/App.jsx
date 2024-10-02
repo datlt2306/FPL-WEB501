@@ -2,6 +2,7 @@ import { useState } from "react";
 import "./App.css";
 
 function App() {
+    const [valueInput, setValueInput] = useState("");
     const [products, setProducts] = useState([
         { id: 1, name: "Iphone 12", price: 1000, status: true }, // item = 0
         { id: 2, name: "Iphone 13", price: 2000, status: true }, // item = 1
@@ -13,8 +14,22 @@ function App() {
             setProducts(products.filter((item) => item.id !== id));
         }
     };
+
+    const onSubmit = (e) => {
+        e.preventDefault();
+        if (!valueInput) return;
+        setProducts([
+            ...products,
+            { id: products.length + 1, name: valueInput, price: 3000, status: false },
+        ]);
+    };
     return (
         <>
+            {JSON.stringify(valueInput)}
+            <form onSubmit={onSubmit}>
+                <input type="text" onChange={(e) => setValueInput(e.target.value)} />
+                <button>Thêm</button>
+            </form>
             <table>
                 <thead>
                     <tr>
@@ -49,4 +64,10 @@ export default App;
  * Bước 2: Hiển thị danh sách mảng
  * Bước 3: Taọ hàm xóa sản phẩm
  * Bước 4: Click vào button thì lấy id, truyền id vào hàm xóa sản phẩm
+ */
+
+/**
+ * B1: Tạo form
+ * B2: Lấy giá trị từ input
+ * B3: Thêm sản phẩm mới vào mảng products
  */

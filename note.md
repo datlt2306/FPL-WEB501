@@ -2,7 +2,25 @@
 
 ## Phần 1:
 
--   Bước 1: Tạo file db.json
+-   Bước 1: Tạo file db.json ở root folder với nội dung sau:
+
+```json
+{
+    "products": [
+        {
+            "id": 1,
+            "name": "Product 1",
+            "price": 100
+        },
+        {
+            "id": 2,
+            "name": "Product 2",
+            "price": 200
+        }
+    ]
+
+```
+
 -   Bước 2: chỉnh sửa file package.json:
 
 ```json

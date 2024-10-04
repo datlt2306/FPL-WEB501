@@ -18,7 +18,7 @@
             "price": 200
         }
     ]
-
+}
 ```
 
 -   Bước 2: chỉnh sửa file package.json:

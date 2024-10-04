@@ -21,7 +21,11 @@
 }
 ```
 
-> Trong trường hợp máy chưa cài json-server thì gõ câu lệnh sau để cài: npm i json-server@0.17.4 json-server-auth -D
+> Trong trường hợp máy chưa cài json-server thì gõ câu lệnh sau để cài:
+
+```bash
+npm i json-server@0.17.4 json-server-auth -D
+```
 
 -   Bước 2: chỉnh sửa file package.json:
 

@@ -1,45 +1,112 @@
-import { useEffect, useState } from "react";
-import "./App.css";
+import React, { useEffect, useState } from "react";
+import {
+    MenuFoldOutlined,
+    MenuUnfoldOutlined,
+    UploadOutlined,
+    UserOutlined,
+    VideoCameraOutlined,
+} from "@ant-design/icons";
+import { Button, Layout, Menu, Table, theme } from "antd";
 import axios from "axios";
-
-function App() {
+const { Header, Sider, Content } = Layout;
+const App = () => {
     const [products, setProducts] = useState([]);
+    const [collapsed, setCollapsed] = useState(false);
+    const {
+        token: { colorBgContainer, borderRadiusLG },
+    } = theme.useToken();
+
     useEffect(() => {
         (async () => {
             try {
-                // setProducts(await (await axios.get(`http://localhost:3000/products`)).data);
                 const response = await axios.get(`http://localhost:3000/products`);
-                setProducts(response.data);
+                const newData = response.data.map((item) => ({
+                    key: item.id,
+                    ...item,
+                }));
+                setProducts(newData);
             } catch (error) {
-                console.log(error.message);
+                console.log(error);
             }
         })();
     }, []);
 
-    const removeItem = async (id) => {
-        const confirm = window.confirm("Bạn có chắc chắn muốn xóa sản phẩm này không?");
-        if (confirm) {
-            try {
-                await axios.delete(`http://localhost:3000/products/${id}`);
-                setProducts(products.filter((item) => item.id !== id));
-            } catch (error) {
-                console.log(error.message);
-            }
-        }
-    };
+    const columns = [
+        {
+            title: "Tên sản phẩm",
+            dataIndex: "name",
+            key: "name",
+        },
+        {
+            title: "Giá",
+            dataIndex: "price",
+            key: "price",
+        },
+        {
+            title: "Mô tả",
+            dataIndex: "description",
+            key: "description",
+        },
+    ];
+
     return (
-        <>
-            {products.map((item) => (
-                <div key={item.id}>
-                    {item.name} <button onClick={() => removeItem(item.id)}>Xóa</button>
-                </div>
-            ))}
-        </>
+        <Layout className="h-screen">
+            <Sider trigger={null} collapsible collapsed={collapsed}>
+                <div className="demo-logo-vertical" />
+                <Menu
+                    theme="dark"
+                    mode="inline"
+                    defaultSelectedKeys={["1"]}
+                    items={[
+                        {
+                            key: "1",
+                            icon: <UserOutlined />,
+                            label: "nav 1",
+                        },
+                        {
+                            key: "2",
+                            icon: <VideoCameraOutlined />,
+                            label: "nav 2",
+                        },
+                        {
+                            key: "3",
+                            icon: <UploadOutlined />,
+                            label: "nav 3",
+                        },
+                    ]}
+                />
+            </Sider>
+            <Layout>
+                <Header
+                    style={{
+                        padding: 0,
+                        background: colorBgContainer,
+                    }}
+                >
+                    <Button
+                        type="text"
+                        icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
+                        onClick={() => setCollapsed(!collapsed)}
+                        style={{
+                            fontSize: "16px",
+                            width: 64,
+                            height: 64,
+                        }}
+                    />
+                </Header>
+                <Content
+                    style={{
+                        margin: "24px 16px",
+                        padding: 24,
+                        minHeight: 280,
+                        background: colorBgContainer,
+                        borderRadius: borderRadiusLG,
+                    }}
+                >
+                    <Table dataSource={products} columns={columns} />;
+                </Content>
+            </Layout>
+        </Layout>
     );
-}
+};
 export default App;
-/**
- * Case 1: trường hợp useEffect không có tham số thứ 2 thì useEffect sẽ chạy mỗi khi component render lại (tương tự state thay đổi)
- * Case 2: trường hợp useEffect có tham số thứ 2 là mảng rỗng [] thì useEffect sẽ chạy 1 lần duy nhất sau khi component render lần đầu tiên
- * Case 3: trường hợp useEffect có tham số thứ 2 là 1 mảng chứa các biến thì useEffect sẽ chạy mỗi khi các biến trong mảng thay đổi
- */

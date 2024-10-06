@@ -1,4 +1,3 @@
-import React, { useEffect, useState } from "react";
 import {
     MenuFoldOutlined,
     MenuUnfoldOutlined,
@@ -6,8 +5,9 @@ import {
     UserOutlined,
     VideoCameraOutlined,
 } from "@ant-design/icons";
-import { Button, Layout, Menu, Table, theme } from "antd";
+import { Button, Layout, Menu, Popconfirm, Space, Table, theme } from "antd";
 import axios from "axios";
+import React, { useEffect, useState } from "react";
 const { Header, Sider, Content } = Layout;
 const App = () => {
     const [products, setProducts] = useState([]);
@@ -20,22 +20,35 @@ const App = () => {
         (async () => {
             try {
                 const response = await axios.get(`http://localhost:3000/products`);
-                const newData = response.data.map((item) => ({
-                    key: item.id,
-                    ...item,
-                }));
-                setProducts(newData);
+                setProducts(
+                    response.data.map((item) => ({
+                        key: item.id,
+                        ...item,
+                    }))
+                );
             } catch (error) {
                 console.log(error);
             }
         })();
     }, []);
 
+    const removeItem = async (id) => {
+        try {
+            await axios.delete(`http://localhost:3000/products/${id}`);
+            setProducts(products.filter((item) => item.id !== id));
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
     const columns = [
         {
             title: "Tên sản phẩm",
             dataIndex: "name",
             key: "name",
+            render: (name) => {
+                return <strong>{name}</strong>;
+            },
         },
         {
             title: "Giá",
@@ -46,6 +59,29 @@ const App = () => {
             title: "Mô tả",
             dataIndex: "description",
             key: "description",
+        },
+        {
+            title: "Hành động",
+            key: "action",
+            width: 200,
+            render: (_, item) => {
+                return (
+                    <Space>
+                        <Popconfirm
+                            title="Xóa sản phẩm"
+                            description="Bạn có chắc chắn muốn xóa sản phẩm này không?"
+                            cancelText="Hủy"
+                            okText="Ok"
+                            onConfirm={() => removeItem(item.id)}
+                        >
+                            <Button type="primary" danger>
+                                Xóa
+                            </Button>
+                        </Popconfirm>
+                        <Button type="primary">Cập nhật</Button>
+                    </Space>
+                );
+            },
         },
     ];
 
@@ -103,7 +139,7 @@ const App = () => {
                         borderRadius: borderRadiusLG,
                     }}
                 >
-                    <Table dataSource={products} columns={columns} />;
+                    <Table dataSource={products} columns={columns} />
                 </Content>
             </Layout>
         </Layout>

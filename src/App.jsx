@@ -7,7 +7,7 @@ import {
 } from "@ant-design/icons";
 import { Button, Layout, Menu, Popconfirm, Space, Table, theme } from "antd";
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 const { Header, Sider, Content } = Layout;
 const App = () => {
     const [products, setProducts] = useState([]);
@@ -19,7 +19,7 @@ const App = () => {
     useEffect(() => {
         (async () => {
             try {
-                const response = await axios.get(`http://localhost:3000/products`);
+                const response = await axios.get(`${import.meta.env.VITE_API_URL}/products`);
                 setProducts(
                     response.data.map((item) => ({
                         key: item.id,
@@ -32,22 +32,22 @@ const App = () => {
         })();
     }, []);
 
-    const removeItem = async (id) => {
+    const confirm = async (id) => {
+        console.log({ id });
         try {
-            await axios.delete(`http://localhost:3000/products/${id}`);
+            await axios.delete(`${import.meta.env.VITE_API_URL}/products/${id}`);
             setProducts(products.filter((item) => item.id !== id));
         } catch (error) {
             console.log(error);
         }
     };
-
     const columns = [
         {
             title: "Tên sản phẩm",
             dataIndex: "name",
             key: "name",
-            render: (name) => {
-                return <strong>{name}</strong>;
+            render: (text) => {
+                return <strong>{text}</strong>;
             },
         },
         {
@@ -65,21 +65,25 @@ const App = () => {
             key: "action",
             width: 200,
             render: (_, item) => {
+                console.log("item", item);
                 return (
-                    <Space>
-                        <Popconfirm
-                            title="Xóa sản phẩm"
-                            description="Bạn có chắc chắn muốn xóa sản phẩm này không?"
-                            cancelText="Hủy"
-                            okText="Ok"
-                            onConfirm={() => removeItem(item.id)}
-                        >
-                            <Button type="primary" danger>
-                                Xóa
-                            </Button>
-                        </Popconfirm>
-                        <Button type="primary">Cập nhật</Button>
-                    </Space>
+                    <>
+                        <Space>
+                            <Popconfirm
+                                title="Delete the task"
+                                description="Are you sure to delete this task?"
+                                onConfirm={() => confirm(item.id)}
+                                // onCancel={cancel}
+                                okText="Đồng ý"
+                                cancelText="Hủy"
+                            >
+                                <Button type="primary" danger>
+                                    Xóa
+                                </Button>
+                            </Popconfirm>
+                            <Button type="primary">Cập nhật</Button>
+                        </Space>
+                    </>
                 );
             },
         },
@@ -146,3 +150,10 @@ const App = () => {
     );
 };
 export default App;
+
+/**
+ * Bước 1: Click button lấy ID
+ * Bước 2: Cần phải có confirm trước khi xóa:
+ * Bước 3: Gửi request lên server để xóa sản phẩm dựa theo ID đã click
+ * Bước 4: Nếu thành công thì xóa sản phẩm khỏi state: .filter()
+ */

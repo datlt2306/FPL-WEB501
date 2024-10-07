@@ -1,159 +1,60 @@
-import {
-    MenuFoldOutlined,
-    MenuUnfoldOutlined,
-    UploadOutlined,
-    UserOutlined,
-    VideoCameraOutlined,
-} from "@ant-design/icons";
-import { Button, Layout, Menu, Popconfirm, Space, Table, theme } from "antd";
 import axios from "axios";
-import { useEffect, useState } from "react";
-const { Header, Sider, Content } = Layout;
+import React, { useEffect, useState } from "react";
+
 const App = () => {
     const [products, setProducts] = useState([]);
-    const [collapsed, setCollapsed] = useState(false);
-    const {
-        token: { colorBgContainer, borderRadiusLG },
-    } = theme.useToken();
 
     useEffect(() => {
         (async () => {
             try {
                 const response = await axios.get(`${import.meta.env.VITE_API_URL}/products`);
-                setProducts(
-                    response.data.map((item) => ({
-                        key: item.id,
-                        ...item,
-                    }))
-                );
+                setProducts(response.data);
             } catch (error) {
                 console.log(error);
             }
         })();
     }, []);
-
-    const confirm = async (id) => {
-        console.log({ id });
-        try {
+    const removeItem = async (id) => {
+        const confirm = window.confirm("Bạn có chắc chắn muốn xóa sản phẩm này không?");
+        if (confirm) {
             await axios.delete(`${import.meta.env.VITE_API_URL}/products/${id}`);
             setProducts(products.filter((item) => item.id !== id));
-        } catch (error) {
-            console.log(error);
         }
     };
-    const columns = [
-        {
-            title: "Tên sản phẩm",
-            dataIndex: "name",
-            key: "name",
-            render: (text) => {
-                return <strong>{text}</strong>;
-            },
-        },
-        {
-            title: "Giá",
-            dataIndex: "price",
-            key: "price",
-        },
-        {
-            title: "Mô tả",
-            dataIndex: "description",
-            key: "description",
-        },
-        {
-            title: "Hành động",
-            key: "action",
-            width: 200,
-            render: (_, item) => {
-                console.log("item", item);
-                return (
-                    <>
-                        <Space>
-                            <Popconfirm
-                                title="Delete the task"
-                                description="Are you sure to delete this task?"
-                                onConfirm={() => confirm(item.id)}
-                                // onCancel={cancel}
-                                okText="Đồng ý"
-                                cancelText="Hủy"
-                            >
-                                <Button type="primary" danger>
-                                    Xóa
-                                </Button>
-                            </Popconfirm>
-                            <Button type="primary">Cập nhật</Button>
-                        </Space>
-                    </>
-                );
-            },
-        },
-    ];
-
     return (
-        <Layout className="h-screen">
-            <Sider trigger={null} collapsible collapsed={collapsed}>
-                <div className="demo-logo-vertical" />
-                <Menu
-                    theme="dark"
-                    mode="inline"
-                    defaultSelectedKeys={["1"]}
-                    items={[
-                        {
-                            key: "1",
-                            icon: <UserOutlined />,
-                            label: "nav 1",
-                        },
-                        {
-                            key: "2",
-                            icon: <VideoCameraOutlined />,
-                            label: "nav 2",
-                        },
-                        {
-                            key: "3",
-                            icon: <UploadOutlined />,
-                            label: "nav 3",
-                        },
-                    ]}
-                />
-            </Sider>
-            <Layout>
-                <Header
-                    style={{
-                        padding: 0,
-                        background: colorBgContainer,
-                    }}
-                >
-                    <Button
-                        type="text"
-                        icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
-                        onClick={() => setCollapsed(!collapsed)}
-                        style={{
-                            fontSize: "16px",
-                            width: 64,
-                            height: 64,
-                        }}
-                    />
-                </Header>
-                <Content
-                    style={{
-                        margin: "24px 16px",
-                        padding: 24,
-                        minHeight: 280,
-                        background: colorBgContainer,
-                        borderRadius: borderRadiusLG,
-                    }}
-                >
-                    <Table dataSource={products} columns={columns} />
-                </Content>
-            </Layout>
-        </Layout>
+        <div>
+            <h1>Quản lý sản phẩm</h1>
+            <div className="container">
+                <table className="table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Tên sản phẩm</th>
+                            <th>Giá sản phẩm</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {products.map((item, index) => (
+                            <tr key={item.id}>
+                                <td>{index + 1}</td>
+                                <td>{item.name}</td>
+                                <td>{item.price}</td>
+                                <td>
+                                    <button
+                                        className="btn btn-danger"
+                                        onClick={() => removeItem(item.id)}
+                                    >
+                                        Xóa
+                                    </button>
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
+        </div>
     );
 };
-export default App;
 
-/**
- * Bước 1: Click button lấy ID
- * Bước 2: Cần phải có confirm trước khi xóa:
- * Bước 3: Gửi request lên server để xóa sản phẩm dựa theo ID đã click
- * Bước 4: Nếu thành công thì xóa sản phẩm khỏi state: .filter()
- */
+export default App;

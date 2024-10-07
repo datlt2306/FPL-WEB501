@@ -1,5 +1,9 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { Route, Routes } from "react-router-dom";
+import ProductList from "./components/ProductList";
+import ProductAdd from "./components/ProductAdd";
+import ProductEdit from "./components/ProductEdit";
 
 const App = () => {
     const [products, setProducts] = useState([]);
@@ -23,38 +27,31 @@ const App = () => {
     };
     return (
         <div>
-            <h1>Quản lý sản phẩm</h1>
-            <div className="container">
-                <table className="table">
-                    <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>Tên sản phẩm</th>
-                            <th>Giá sản phẩm</th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {products.map((item, index) => (
-                            <tr key={item.id}>
-                                <td>{index + 1}</td>
-                                <td>{item.name}</td>
-                                <td>{item.price}</td>
-                                <td>
-                                    <button
-                                        className="btn btn-danger"
-                                        onClick={() => removeItem(item.id)}
-                                    >
-                                        Xóa
-                                    </button>
-                                </td>
-                            </tr>
-                        ))}
-                    </tbody>
-                </table>
-            </div>
+            <Routes>
+                <Route path="/" element={<h1>Home page</h1>} />
+                <Route
+                    path="/products"
+                    element={<ProductList products={products} removeItem={removeItem} />}
+                />
+                <Route path="/products/add" element={<ProductAdd />} />
+                <Route path="/products/:id/edit" element={<ProductEdit />} />
+            </Routes>
         </div>
     );
 };
 
 export default App;
+
+/**
+ * Sử dụng router trong React
+ * Bước 1: npm i react-router-dom
+ * Bước 2: Truy cập file main.js và import BrowserRouter từ react-router-dom
+ * createRoot(document.getElementById("root")).render(
+    <BrowserRouter>
+        <App />
+    </BrowserRouter>
+);
+* Bước 3: Truy cập file App.jsx và import Routes từ react-router-dom
+* Bước 4: tách các component ra thành các file riêng biệt
+* Bước 5: Truy cập file App.jsx và import các component vừa tách ra
+ */

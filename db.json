@@ -4,6 +4,41 @@
       "id": 2,
       "name": "Product 2",
       "price": 200
+    },
+    {
+      "name": "Sản phẩm 100",
+      "price": "100",
+      "id": 3
+    },
+    {
+      "name": "Sản phẩm 101",
+      "price": "101",
+      "id": 4
+    },
+    {
+      "name": "Sản phẩm 102",
+      "price": "102",
+      "id": 5
+    },
+    {
+      "name": "Sản phẩm 103",
+      "price": "103",
+      "id": 6
+    },
+    {
+      "name": "sản phẩm 104",
+      "price": "104",
+      "id": 7
+    },
+    {
+      "name": "Sản phẩm 105",
+      "price": "105",
+      "id": 8
+    },
+    {
+      "name": "Sản phẩm 106",
+      "price": "106",
+      "id": 9
     }
   ]
 }

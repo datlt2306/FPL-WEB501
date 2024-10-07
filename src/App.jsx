@@ -25,6 +25,15 @@ const App = () => {
             setProducts(products.filter((item) => item.id !== id));
         }
     };
+    const addItem = async (product) => {
+        try {
+            const response = await axios.post(`${import.meta.env.VITE_API_URL}/products`, product);
+            alert("Thêm sản phẩm thành công");
+            setProducts([...products, response.data]);
+        } catch (error) {
+            console.log(error);
+        }
+    };
     return (
         <div>
             <Routes>
@@ -33,7 +42,7 @@ const App = () => {
                     path="/products"
                     element={<ProductList products={products} removeItem={removeItem} />}
                 />
-                <Route path="/products/add" element={<ProductAdd />} />
+                <Route path="/products/add" element={<ProductAdd addItem={addItem} />} />
                 <Route path="/products/:id/edit" element={<ProductEdit />} />
             </Routes>
         </div>

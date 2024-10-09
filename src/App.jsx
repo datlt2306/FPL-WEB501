@@ -4,6 +4,8 @@ import { Route, Routes } from "react-router-dom";
 import ProductList from "./components/ProductList";
 import ProductAdd from "./components/ProductAdd";
 import ProductEdit from "./components/ProductEdit";
+import Signup from "./components/Signup";
+import Signin from "./components/Signin";
 
 const App = () => {
     const [products, setProducts] = useState([]);
@@ -34,6 +36,22 @@ const App = () => {
             console.log(error);
         }
     };
+    const editItem = async (product) => {
+        try {
+            const response = await axios.put(
+                `${import.meta.env.VITE_API_URL}/products/${product.id}`,
+                product
+            );
+            alert("Cập nhật sản phẩm thành công");
+            // rerender
+            const newProducts = products.map((item) =>
+                item.id === response.data.id ? response.data : item
+            );
+            setProducts(newProducts);
+        } catch (error) {
+            console.log(error);
+        }
+    };
     return (
         <div>
             <Routes>
@@ -43,7 +61,9 @@ const App = () => {
                     element={<ProductList products={products} removeItem={removeItem} />}
                 />
                 <Route path="/products/add" element={<ProductAdd addItem={addItem} />} />
-                <Route path="/products/:id/edit" element={<ProductEdit />} />
+                <Route path="/products/:id/edit" element={<ProductEdit editItem={editItem} />} />
+                <Route path="/signup" element={<Signup />} />
+                <Route path="/signin" element={<Signin />} />
             </Routes>
         </div>
     );

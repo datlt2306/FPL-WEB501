@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
 import React from "react";
+import { Link } from "react-router-dom";
 
 const ProductList = ({ products, removeItem }) => {
     return (
@@ -28,6 +29,12 @@ const ProductList = ({ products, removeItem }) => {
                                     >
                                         Xóa
                                     </button>
+                                    <Link
+                                        to={`/products/${item.id}/edit`}
+                                        className="btn btn-primary"
+                                    >
+                                        Sửa
+                                    </Link>
                                 </td>
                             </tr>
                         ))}

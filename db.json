@@ -2,7 +2,7 @@
   "products": [
     {
       "id": 2,
-      "name": "Product 2",
+      "name": "Product 2 update 1",
       "price": 200
     },
     {
@@ -39,6 +39,13 @@
       "name": "Sản phẩm 106",
       "price": "106",
       "id": 9
+    }
+  ],
+  "users": [
+    {
+      "email": "admin@gmail.com",
+      "password": "$2a$10$n/aPFtYIblRqhtduxi/kVO29zf3dGKwlOYGfTkqJIQA750y70ZsLW",
+      "id": 1
     }
   ]
 }

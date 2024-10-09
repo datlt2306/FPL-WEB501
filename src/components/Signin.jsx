@@ -1,18 +1,17 @@
+import axios from "axios";
 import React from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 
-const ProductAdd = ({ addItem }) => {
-    const { register, handleSubmit, reset } = useForm();
-    const navigate = useNavigate();
+const Signin = () => {
+    const { register, handleSubmit } = useForm();
 
-    const onSubmit = (formData) => {
+    const onSubmit = async (formData) => {
         try {
-            reset();
-            navigate("/products");
-            addItem(formData);
+            await axios.post(`${import.meta.env.VITE_API_URL}/signin`, formData);
+            alert("Đăng nhập thành công");
         } catch (error) {
-            console.log(error);
+            console.log("error", error.response.data);
         }
     };
     return (
@@ -20,22 +19,22 @@ const ProductAdd = ({ addItem }) => {
             <form onSubmit={handleSubmit(onSubmit)}>
                 <div className="mb-3">
                     <label htmlFor="" className="form-label">
-                        Tên sản phẩm
+                        Email
                     </label>
-                    <input type="text" className="form-control" {...register("name")} />
+                    <input type="email" className="form-control" {...register("email")} />
                 </div>
                 <div className="mb-3">
                     <label htmlFor="" className="form-label">
-                        Giá sản phẩm
+                        Password
                     </label>
-                    <input type="number" className="form-control" {...register("price")} />
+                    <input type="password" className="form-control" {...register("password")} />
                 </div>
                 <button className="btn btn-primary" type="submit">
-                    Thêm
+                    Đăng ký
                 </button>
             </form>
         </div>
     );
 };
 
-export default ProductAdd;
+export default Signin;

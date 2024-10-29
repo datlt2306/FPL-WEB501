@@ -1,71 +1,60 @@
-// ES6 syntax
-/*
-- Biến : let, const, var
-- Arrow function
-- Destructoring
-- Spread operator
-- Module : import & export 
-*/
-/* */
-// Biến: let, const và var
+/**
+ * Cú pháp ES6 - ECMAScript 6
+ * - Biến: let, var, const
+ * - Function : arrow function, IFFE, anonymous function, callback
+ * - Object
+ * - Array: map, filter, reduce
+ * - Destructoring
+ * - Spread operator
+ * - Module: import/export
+ */
+/**
+ * Biến: let, const, var
+ * - Khi nào sử dụng let(chưa xác định giá trị), const(mặc định), var(bỏ)
+ * - Đặt tên biến như nào cho chuẩn quốc tế (camelCase)
+ */
+
 var a = 10;
 a = 20;
-console.log(a);
+console.log(a); // 20
 
 let b = 10;
 b = 20;
-
 console.log(b);
 
 const c = 10;
-c = 20;
 console.log(c);
-// Khi nào sử dụng let(xác định có thể thay đổi giá trị), const(mặc định) và var(bỏ)
-// Đặt tên biến: camelCase
-// Mặc định biến sẽ là 1 danh từ. Ví dụ myName, myProduct, age, person, myClassName...
-// Tên hàm sẽ là 1 động từ. Ví dụ: getName, getAge, getProductById, showName, showAge, removeProductById...
+
+const user = {
+    name: "Đạt",
+};
+console.log(user);
+user.name = "Kiên";
+console.log(user);
+
+// Tên biến là một danh từ hoặc một cụm danh từ
 const myFullName = "Lê Trọng Đạt";
-const myStatus = true;
 const myAge = 36;
+const myStatus = true;
+
 const myInfo = {
-    fullName: "Lê Trọng Đạt",
+    fullname: "Lê Trọng Đạt",
     age: 36,
     status: true,
 };
+
 const product = {
-    id: 1,
-    name: "Iphone 12",
+    name: "Sản phẩm A",
     price: 1000,
-    status: true,
+    inStock: true,
 };
-const productList = [];
-const users = [];
-const userList = [];
-const roles = [];
-const rolesList = [];
+const products = [{}, {}];
+const productList = [{}, {}];
+const roles = ["admin", "editor", "user"];
+const roleList = ["admin", "editor", "user"];
 
-// tên hàm
-
+// Tên hàm phải là 1 động từ
+function getFullName() {}
 function removeProductById(id) {}
-function addProduct(product) {}
-function showProfile() {}
-
-// const không thay đổi được giá trị
-
-const person = {
-    name: "Đạt",
-};
-person.name = "Kiên";
-console.log(person);
-
-const myNumber = [1, 2, 3, 4];
-myNumber.push(5);
-console.log(myNumber); // [1,2,3,4,5];
-// Tham trị và tham chiếu
-// Tham trị là giá trị của biến được lưu trữ trong bộ nhớ: string, number, boolean
-// Tham chiếu là địa chỉ của biến được lưu trữ trong bộ nhớ: object và array
-
-// Sự khác nhau giữa let, var, const. Khi nào sử dụng?
-// Đặt tên biến như thế nào là chuẩn quốc tế??
-// Object nó là gì?
-// Tham trị và tham chiếu
+function showProfileUser() {}
+function addProduct() {}

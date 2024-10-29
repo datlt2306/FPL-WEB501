@@ -58,3 +58,16 @@ function getFullName() {}
 function removeProductById(id) {}
 function showProfileUser() {}
 function addProduct() {}
+//
+
+function sum(a, b) {
+    // kiểm tra
+    if (typeof a !== "number" || typeof b !== "number") return "Vui lòng nhập số";
+    // xử lý
+    const result = a + b;
+    //trả về kết quả
+    return result;
+}
+
+const result = sum("10", 20);
+console.log("Result ", result);

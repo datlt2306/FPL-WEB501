@@ -1,29 +1,51 @@
-// Tên biến Danh từ: product, myName, myStatus
-const productName = "Sản phẩm A";
-const productPrice = 200;
-const productInstock = true;
-const productQuantity = 100;
-// Nếu biến là 1 mảng thì tên biến phải là danh từ số nhiều
-const products = [];
+// ES6 syntax
+/*
+- Biến : let, const, var
+- Arrow function
+- Destructoring
+- Spread operator
+- Module : import & export 
+*/
+/* */
+// Biến: let, const và var
+var a = 10;
+a = 20;
+console.log(a);
+
+let b = 10;
+b = 20;
+
+console.log(b);
+
+const c = 10;
+c = 20;
+console.log(c);
+// Khi nào sử dụng let(xác định có thể thay đổi giá trị), const(mặc định) và var(bỏ)
+// Đặt tên biến: camelCase
+// Mặc định biến sẽ là 1 danh từ. Ví dụ myName, myProduct, age, person, myClassName...
+// Tên hàm sẽ là 1 động từ. Ví dụ: getName, getAge, getProductById, showName, showAge, removeProductById...
+const myFullName = "Lê Trọng Đạt";
+const myStatus = true;
+const myAge = 36;
+const myInfo = {
+    fullName: "Lê Trọng Đạt",
+    age: 36,
+    status: true,
+};
+const product = {
+    id: 1,
+    name: "Iphone 12",
+    price: 1000,
+    status: true,
+};
 const productList = [];
+const users = [];
 const userList = [];
 const roles = [];
-/** Tên hàm là 1 động từ */
-function removeProductById(id) {}
-function addProduct() {}
-function updateProduct() {}
-function getProfileUser(slug) {}
+const rolesList = [];
 
-// Demo hàm trả về kết quả
-function sum(a, b) {
-    // Kiểm tra
-    if (typeof a !== "number" || typeof b !== "number") {
-        return "Tham số truyền vào không phải kiểu number";
-    }
-    // Thực thi công việc
-    const result = a + b;
-    // trả về kết quả
-    return result;
-}
-// excute function
-console.log(sum(10, 20));
+// tên hàm
+
+function removeProductById(id) {}
+function addProduct(product) {}
+function showProfile() {}

@@ -49,3 +49,23 @@ const rolesList = [];
 function removeProductById(id) {}
 function addProduct(product) {}
 function showProfile() {}
+
+// const không thay đổi được giá trị
+
+const person = {
+    name: "Đạt",
+};
+person.name = "Kiên";
+console.log(person);
+
+const myNumber = [1, 2, 3, 4];
+myNumber.push(5);
+console.log(myNumber); // [1,2,3,4,5];
+// Tham trị và tham chiếu
+// Tham trị là giá trị của biến được lưu trữ trong bộ nhớ: string, number, boolean
+// Tham chiếu là địa chỉ của biến được lưu trữ trong bộ nhớ: object và array
+
+// Sự khác nhau giữa let, var, const. Khi nào sử dụng?
+// Đặt tên biến như thế nào là chuẩn quốc tế??
+// Object nó là gì?
+// Tham trị và tham chiếu

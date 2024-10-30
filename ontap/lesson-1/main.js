@@ -27,3 +27,8 @@ function sum(a, b) {
 }
 // excute function
 console.log(sum(10, 20));
+
+// sự khác nhau về let, const và var
+// khi nào sử dụng let, const và var
+// đặt tên biến hoặc tên hàm theo quy tắc chuẩn quốc tế
+// khi khai báo hàm cần nguyên tắc gì? kiểm tra, thực thi và trả về kết quả

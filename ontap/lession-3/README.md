@@ -17,7 +17,7 @@ node -v
 
 ## Tạo project bằng Vitejs
 
--   Cấp quyền cho powershel
+-   Cấp quyền cho powershell, gõ câu lệnh sau vào termial và enter:
 
 ```bash
 Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned

@@ -27,9 +27,10 @@ npm create vite@latest my-app -- --template react
 
 ```bash
 cd my-app
+code .
 ```
 
--   Chạy dự án
+-   Cài đặt các package và chạy dự án
 
 ```bash
 npm i

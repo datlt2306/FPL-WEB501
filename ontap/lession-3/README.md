@@ -17,7 +17,13 @@ node -v
 
 ## Tạo project bằng Vitejs
 
--   Gõ câu lệnh sau:
+-   Cấp quyền cho powershel
+
+```bash
+Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned
+```
+
+-   Gõ câu lệnh sau để tạo project:
 
 ```bash
 npm create vite@latest my-app -- --template react

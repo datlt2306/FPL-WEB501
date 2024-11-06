@@ -1,5 +1,6 @@
 import { createRoot } from "react-dom/client";
 import "./index.css";
+import App from "./App";
 
 // dữ liệu
 const data = {
@@ -18,5 +19,5 @@ const displayStudentInfo = (student) => {
         </div>
     );
 };
-createRoot(document.getElementById("root")).render(<div>{displayStudentInfo(data)}</div>);
+createRoot(document.getElementById("root")).render(<App />);
 // https://www.youtube.com/@codewithdat

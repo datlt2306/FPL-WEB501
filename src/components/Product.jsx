@@ -1,10 +1,9 @@
 /* eslint-disable react/prop-types */
-const Product = (props) => {
-    console.log(props); // { name: "Sản phẩm A", price: 200}
+const Product = ({ name, price }) => {
     return (
         <div>
-            <h2>Tên sản phẩm :{props.name}</h2>
-            <p>Giá: {props.price}</p>
+            <h2>Tên sản phẩm :{name}</h2>
+            <p>Giá: {price}</p>
         </div>
     );
 };

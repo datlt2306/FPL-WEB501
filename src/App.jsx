@@ -1,12 +1,13 @@
-import "./App.css";
-import classes from "./App.module.css";
+import Footer from "./components/Footer";
+import Header from "./components/Header";
 
-function App() {
+const App = () => {
     return (
-        <>
-            <button className={classes.title}>Button</button>
-        </>
+        <div>
+            <Header />
+            <p>Nội dung website</p>
+            <Footer />
+        </div>
     );
-}
-
+};
 export default App;

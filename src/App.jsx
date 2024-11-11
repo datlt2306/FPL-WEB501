@@ -2,18 +2,8 @@
 import { Link, Outlet, Route, Routes } from "react-router-dom";
 import ProductsPage from "./pages/Products";
 import HomePage from "./pages/Home";
+import LayoutWebsite from "./components/LayoutWebsite";
 
-const LayoutWebsite = () => {
-    return (
-        <>
-            <header>Header</header>
-            <main>
-                <Outlet />
-            </main>
-            <footer>Footer</footer>
-        </>
-    );
-};
 const LayoutAdmin = () => {
     return (
         <>
@@ -27,9 +17,6 @@ const LayoutAdmin = () => {
 const App = () => {
     return (
         <>
-            <Link to="/">Home -</Link>
-            <Link to="/admin/products">Admin Products Page - </Link>
-            <Link to="/admin/products/add">Admin Add Products Page</Link>
             <Routes>
                 <Route path="/" element={<LayoutWebsite />}>
                     <Route path="/" element={<HomePage />} />

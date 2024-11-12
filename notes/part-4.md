@@ -29,3 +29,7 @@ ReactDOM.render(
 
 -   Truy cập cài đặt extension VSC : tìm và cài đặt `ES7+ React/Redux/React-Native snippets`
 -   Sử dụng `rafce` để tạo component nhanh
+
+## Cài extension `html to jsx`
+
+-   Sử dụng bằng cách bôi đen code html và chuột chọn `convert html to jsx`

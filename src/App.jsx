@@ -1,18 +1,15 @@
-const Layout = ({ children }) => {
-    return (
-        <div className="layout">
-            <header>Header</header>
-            <main>{children}</main>
-            <footer>Footer</footer>
-        </div>
-    );
-};
+import { Route, Routes } from "react-router-dom";
+import HomePage from "./pages/HomePage";
+import ProductsPage from "./pages/ProductsPage";
+
 const App = () => {
     return (
-        <Layout>
-            <h2>Main Content Area</h2>
-            <p>This is the main content of the page.</p>
-        </Layout>
+        <div>
+            <Routes>
+                <Route path="/" element={<HomePage />} />
+                <Route path="/products" element={<ProductsPage />} />
+            </Routes>
+        </div>
     );
 };
 export default App;

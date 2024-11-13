@@ -22,6 +22,7 @@ ReactDOM.render(
 <Routes>
 <Route path="duong_dan" element={component} />
 </Route>
+</Routes>
 
 ```
 

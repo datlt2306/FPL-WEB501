@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <div id="post"></div>
+        <script>
+            const postElement = document.getElementById("post");
+
+            fetch(`http://localhost:3000/products`)
+                .then((response) => response.json())
+                .then((data) => {
+                    console.log("data", data);
+                    const productList = data.map((product) => {
+                        return `<li>${product.name}</li>`;
+                    });
+                    console.log(productList);
+                    console.log('productList.join(" ")', productList.join(" "));
+                    postElement.innerHTML = productList.join(" ");
+                });
+        </script>
+    </body>
+</html>

@@ -3,6 +3,7 @@ import { Link, Outlet, Route, Routes } from "react-router-dom";
 import ProductsPage from "./pages/Products";
 import HomePage from "./pages/Home";
 import LayoutWebsite from "./components/LayoutWebsite";
+import Counter from "./components/Counter";
 
 const LayoutAdmin = () => {
     return (
@@ -17,7 +18,8 @@ const LayoutAdmin = () => {
 const App = () => {
     return (
         <>
-            <Routes>
+            <Counter />
+            {/* <Routes>
                 <Route path="/" element={<LayoutWebsite />}>
                     <Route path="/" element={<HomePage />} />
                     <Route path="products" element={<ProductsPage />} />
@@ -26,7 +28,7 @@ const App = () => {
                     <Route path="/admin/products" element={<h1>Admin products page</h1>} />
                     <Route path="/admin/products/add" element={<h1>Admin Add products page</h1>} />
                 </Route>
-            </Routes>
+            </Routes> */}
         </>
     );
 };

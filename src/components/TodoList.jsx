@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
 const TodoList = () => {
+    const [inputValue, setInputValue] = useState("");
     const [todos, setTodos] = useState([
         { id: 1, title: "Học React", completed: false }, // todo
         { id: 2, title: "Học Javascript", completed: false }, //todo
@@ -13,11 +14,25 @@ const TodoList = () => {
             setTodos(todos.filter((todo) => todo.id !== id));
         }
     };
+    const onHandleInput = (e) => {
+        setInputValue(e.target.value);
+    };
+    const addTodo = (e) => {
+        e.preventDefault();
+        if (inputValue === "") return;
+        // spread operator [...], rest params ...
+        setTodos([...todos, { id: todos.length + 1, title: inputValue, completed: false }]);
+    };
     return (
         <div className="tw-max-w-xl tw-mx-auto tw-my-10 tw-border-2 tw-border-red-500 tw-p-5">
-            <form action="" className="input-group">
-                <input type="text" className="form-control" placeholder="Learning Javascript" />
-                <button className="btn btn-primary" type="button">
+            <form className="input-group" onSubmit={addTodo}>
+                <input
+                    type="text"
+                    className="form-control"
+                    placeholder="Learning Javascript"
+                    onInput={onHandleInput}
+                />
+                <button className="btn btn-primary" type="submit">
                     Thêm mới
                 </button>
             </form>

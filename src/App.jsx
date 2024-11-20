@@ -4,6 +4,7 @@ import ProductsPage from "./pages/Products";
 import HomePage from "./pages/Home";
 import LayoutWebsite from "./components/LayoutWebsite";
 import Counter from "./components/Counter";
+import TodoList from "./components/TodoList";
 
 const LayoutAdmin = () => {
     return (
@@ -18,7 +19,7 @@ const LayoutAdmin = () => {
 const App = () => {
     return (
         <>
-            <Counter />
+            <TodoList />
             {/* <Routes>
                 <Route path="/" element={<LayoutWebsite />}>
                     <Route path="/" element={<HomePage />} />

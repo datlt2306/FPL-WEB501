@@ -1,4 +1,17 @@
+import { useState } from "react";
+
 const TodoList = () => {
+    const [todos, setTodos] = useState([
+        { id: 1, title: "Học React", completed: false }, // todo
+        { id: 2, title: "Học Javascript", completed: false }, // todo
+        { id: 3, title: "Đi chơi với người yêu", completed: false }, //todo
+    ]);
+
+    const removeTodo = (id) => {
+        const confirm = window.confirm(`Bạn có chắc chắn muốn xóa không?`);
+        if (!confirm) return;
+        setTodos(todos.filter((todo) => todo.id !== id));
+    };
     return (
         <div className="tw-max-w-xl tw-mx-auto tw-my-10 tw-border-2 tw-border-red-500 tw-p-5">
             <form className="input-group">
@@ -9,7 +22,19 @@ const TodoList = () => {
             </form>
             <h2 className="tw-text-2xl tw-mt-5">Danh sách công việc</h2>
             <ul className="list-group tw-mt-2">
-                <li className="list-group-item d-flex align-items-center">
+                {todos.map((todo) => (
+                    <li key={todo.id} className="list-group-item d-flex align-items-center">
+                        <input className="form-check-input me-3" type="checkbox" value="" />
+                        <label className="form-check-label">{todo.title}</label>
+                        <button
+                            className="btn btn-sm btn-danger ms-auto"
+                            onClick={() => removeTodo(todo.id)}
+                        >
+                            Xóa
+                        </button>
+                    </li>
+                ))}
+                {/* <li className="list-group-item d-flex align-items-center">
                     <input className="form-check-input me-3" type="checkbox" value="" />
                     <label className="form-check-label">Học React</label>
                     <button className="btn btn-sm btn-danger ms-auto">Xóa</button>
@@ -25,7 +50,7 @@ const TodoList = () => {
                     <input className="form-check-input me-3" type="checkbox" value="" />
                     <label className="form-check-label tw-line-through">Học React</label>
                     <button className="btn btn-sm btn-danger ms-auto">Xóa</button>
-                </li>
+                </li> */}
             </ul>
         </div>
     );
@@ -35,7 +60,7 @@ export default TodoList;
 
 /**
  * Bước 1: Tạo giao diện
- * Bước 2: Fake 1 danh sách và hiển thị ra ngoài
+ * Bước 2: Fake 1 danh sách và hiển thị ra ngoài => tạo state
  * Bước 3: Tạo form và xử lý form để thêm mới todo
  * Bước 4: Xóa form
  * Bước 5: Xử lý sự kiện khi click vào checkbox ( completed)

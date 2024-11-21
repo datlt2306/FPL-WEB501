@@ -4,18 +4,31 @@ const TodoList = () => {
     const [todos, setTodos] = useState([
         { id: 1, title: "Học React", completed: false }, // todo
         { id: 2, title: "Học Javascript", completed: false }, // todo
-        { id: 3, title: "Đi chơi với người yêu", completed: false }, //todo
+        { id: 3, title: "Đi chơi với người yêu", completed: false },
     ]);
+    const [inputValue, setInputValue] = useState("");
 
     const removeTodo = (id) => {
         const confirm = window.confirm(`Bạn có chắc chắn muốn xóa không?`);
         if (!confirm) return;
         setTodos(todos.filter((todo) => todo.id !== id));
     };
+
+    const onHanleSubmit = (e) => {
+        // dừng lại sự kiện reload mặc định của form
+        e.preventDefault();
+        if (!inputValue) return;
+        setTodos([...todos, { id: todos.length + 1, title: inputValue, complted: false }]);
+    };
     return (
         <div className="tw-max-w-xl tw-mx-auto tw-my-10 tw-border-2 tw-border-red-500 tw-p-5">
-            <form className="input-group">
-                <input type="text" className="form-control" placeholder="Learning Javascript" />
+            <form className="input-group" onSubmit={onHanleSubmit}>
+                <input
+                    type="text"
+                    className="form-control"
+                    placeholder="Learning Javascript"
+                    onInput={(e) => setInputValue(e.target.value)}
+                />
                 <button className="btn btn-primary" type="submit">
                     Thêm mới
                 </button>
@@ -61,7 +74,7 @@ export default TodoList;
 /**
  * Bước 1: Tạo giao diện
  * Bước 2: Fake 1 danh sách và hiển thị ra ngoài => tạo state
- * Bước 3: Tạo form và xử lý form để thêm mới todo
- * Bước 4: Xóa form
+ * Bước 3: Xóa phần tử trong danh sách
+ * Bước 4: Tạo form và xử lý form để thêm mới todo
  * Bước 5: Xử lý sự kiện khi click vào checkbox ( completed)
  */

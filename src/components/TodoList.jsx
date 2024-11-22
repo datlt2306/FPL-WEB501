@@ -4,7 +4,7 @@ const TodoList = () => {
     const [inputValue, setInputValue] = useState("");
     const [todos, setTodos] = useState([
         { id: 1, title: "Học React", completed: false }, // todo
-        { id: 2, title: "Học Javascript", completed: false }, //todo
+        { id: 2, title: "Học Javascript", completed: true }, //todo
         { id: 3, title: "Chơi liên quân", completed: false }, // todo
     ]);
 
@@ -40,8 +40,18 @@ const TodoList = () => {
             <ul className="list-group tw-mt-2">
                 {todos.map((todo) => (
                     <li key={todo.id} className="list-group-item d-flex align-items-center">
-                        <input className="form-check-input me-3" type="checkbox" value="" />
-                        <label className="form-check-label">{todo.title}</label>
+                        <input
+                            className="form-check-input me-3"
+                            type="checkbox"
+                            checked={todo.completed}
+                        />
+                        <label
+                            className={`form-check-label ${
+                                todo.completed ? "tw-line-through" : ""
+                            }`}
+                        >
+                            {todo.title}
+                        </label>
                         <button
                             className="btn btn-sm btn-danger ms-auto"
                             onClick={() => removeTodo(todo.id)}
@@ -55,7 +65,7 @@ const TodoList = () => {
                     <label className="form-check-label">Học React</label>
                     <button className="btn btn-sm btn-danger ms-auto">Xóa</button>
                 </li>
-                <li className="list-group-item d-flex align-items-center">
+                <li className="list-group-it    em d-flex align-items-center">
                     <input type="text" className="form-control input-sm" value="Học Javascript" />
                     <div className="tw-flex tw-items-center tw-space-x-2 tw-ml-2">
                         <button className="btn btn-sm btn-info">Hủy</button>
@@ -77,6 +87,6 @@ export default TodoList;
  * Bước 1: Tạo giao diện
  * Bước 2: Fake 1 danh sách và hiển thị ra ngoài
  * Bước 3: Tạo form và xử lý form để thêm mới todo
- * Bước 4: Xóa form
+ * Bước 4: Xóa phần tử trong danh sách
  * Bước 5: Xử lý sự kiện khi click vào checkbox ( completed)
  */

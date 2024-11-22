@@ -1,13 +1,14 @@
 import { useState } from "react";
 
 const TodoList = () => {
-    const [inputValue, setInputValue] = useState("");
-    const [editingTodo, setEditingTodo] = useState(null);
     const [todos, setTodos] = useState([
         { id: 1, title: "Học React", completed: false }, // todo
         { id: 2, title: "Học Javascript", completed: true }, //todo
         { id: 3, title: "Chơi liên quân", completed: false }, // todo
     ]);
+    const [inputValue, setInputValue] = useState("");
+    const [editingTodo, setEditingTodo] = useState(null);
+    const [editingText, setEditingText] = useState("");
     // Hàm xóa todo
     const removeTodo = (id) => {
         const confirm = window.confirm(`Bạn có chắc chắn muốn xóa không?`);
@@ -18,17 +19,11 @@ const TodoList = () => {
     const onHandleInput = (e) => {
         setInputValue(e.target.value);
     };
-    // Hàm addTodo được định nghĩa dưới dạng hàm mũi tên (arrow function).
     const addTodo = (e) => {
-        // Ngăn hành vi mặc định của trình duyệt khi gửi biểu mẫu (form submission).
         e.preventDefault();
-
-        // Nếu giá trị nhập vào (inputValue) là chuỗi rỗng, không thực hiện thêm công việc mới.
         if (inputValue === "") return;
-
-        // Sử dụng toán tử spread `...` để tạo một mảng mới chứa các mục hiện có và thêm một mục mới.
         setTodos([
-            ...todos, // Sao chép tất cả các mục trong mảng `todos` hiện tại.
+            ...todos,
             {
                 id: todos.length + 1, // Tạo ID duy nhất cho công việc mới dựa trên số lượng mục hiện tại.
                 title: inputValue, // Gán giá trị tiêu đề công việc bằng `inputValue`.
@@ -39,6 +34,21 @@ const TodoList = () => {
 
     const startEditing = (todo) => {
         setEditingTodo(todo.id);
+        setEditingText(todo.title);
+    };
+    const completedTodo = (id) => {
+        setTodos(
+            todos.map((todo) => (todo.id === id ? { ...todo, completed: !todo.completed } : todo))
+        );
+    };
+    const saveEditing = (id) => {
+        // console.log(editingText);
+
+        setTodos(todos.map((todo) => (todo.id === id ? { ...todo, title: editingText } : todo)));
+        setEditingTodo(null);
+    };
+    const cancelEditing = () => {
+        setEditingTodo(null);
     };
     return (
         <div className="tw-max-w-xl tw-mx-auto tw-my-10 tw-border-2 tw-border-red-500 tw-p-5">
@@ -62,11 +72,22 @@ const TodoList = () => {
                                 <input
                                     type="text"
                                     className="form-control input-sm"
-                                    value="Học Javascript"
+                                    value={editingText}
+                                    onChange={(e) => setEditingText(e.target.value)}
                                 />
                                 <div className="tw-flex tw-items-center tw-space-x-2 tw-ml-2">
-                                    <button className="btn btn-sm btn-info">Hủy</button>
-                                    <button className="btn btn-sm btn-primary">Lưu</button>
+                                    <button
+                                        className="btn btn-sm btn-info"
+                                        onClick={() => cancelEditing()}
+                                    >
+                                        Hủy
+                                    </button>
+                                    <button
+                                        className="btn btn-sm btn-primary"
+                                        onClick={() => saveEditing(todo.id)}
+                                    >
+                                        Lưu
+                                    </button>
                                 </div>
                             </>
                         ) : (
@@ -75,6 +96,7 @@ const TodoList = () => {
                                     className="form-check-input me-3"
                                     type="checkbox"
                                     checked={todo.completed}
+                                    onChange={() => completedTodo(todo.id)}
                                 />
                                 <label
                                     className={`form-check-label ${
@@ -123,4 +145,7 @@ export default TodoList;
  * Bước 3: Tạo form và xử lý form để thêm mới todo
  * Bước 4: Xóa phần tử trong danh sách
  * Bước 5: Xử lý sự kiện khi click vào checkbox ( completed)
+ * Bước 6: Xử lý sự kiện khi click vào label, hiển thị input để sửa
+ * Bước 7: Xử lý sự kiện khi click vào nút lưu
+ * Bước 8: Xử lý sự kiện khi click vào nút hủy
  */

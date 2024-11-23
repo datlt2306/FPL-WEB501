@@ -2,9 +2,9 @@ import { useState } from "react";
 
 const TodoList = () => {
     const [todos, setTodos] = useState([
-        { id: 1, title: "Học React", completed: false }, // todo
+        { id: 1, title: "Học React", completed: true }, // todo
         { id: 2, title: "Học Javascript", completed: false }, // todo
-        { id: 3, title: "Đi chơi với người yêu", completed: false },
+        { id: 3, title: "Đi chơi với người yêu", completed: false }, //todo
     ]);
     const [inputValue, setInputValue] = useState("");
 
@@ -19,6 +19,14 @@ const TodoList = () => {
         e.preventDefault();
         if (!inputValue) return;
         setTodos([...todos, { id: todos.length + 1, title: inputValue, complted: false }]);
+    };
+
+    const completedTodo = (id) => {
+        setTodos(
+            todos.map((todo) => {
+                return todo.id === id ? { ...todo, completed: !todo.completed } : todo;
+            })
+        );
     };
     return (
         <div className="tw-max-w-xl tw-mx-auto tw-my-10 tw-border-2 tw-border-red-500 tw-p-5">
@@ -36,16 +44,29 @@ const TodoList = () => {
             <h2 className="tw-text-2xl tw-mt-5">Danh sách công việc</h2>
             <ul className="list-group tw-mt-2">
                 {todos.map((todo) => (
-                    <li key={todo.id} className="list-group-item d-flex align-items-center">
-                        <input className="form-check-input me-3" type="checkbox" value="" />
-                        <label className="form-check-label">{todo.title}</label>
-                        <button
-                            className="btn btn-sm btn-danger ms-auto"
-                            onClick={() => removeTodo(todo.id)}
-                        >
-                            Xóa
-                        </button>
-                    </li>
+                    <>
+                        <li key={todo.id} className="list-group-item d-flex align-items-center">
+                            <input
+                                className="form-check-input me-3"
+                                type="checkbox"
+                                checked={todo.completed}
+                                onChange={() => completedTodo(todo.id)}
+                            />
+                            <label
+                                className={`form-check-label ${
+                                    todo.completed ? "tw-line-through" : ""
+                                }`}
+                            >
+                                {todo.title}
+                            </label>
+                            <button
+                                className="btn btn-sm btn-danger ms-auto"
+                                onClick={() => removeTodo(todo.id)}
+                            >
+                                Xóa
+                            </button>
+                        </li>
+                    </>
                 ))}
                 {/* <li className="list-group-item d-flex align-items-center">
                     <input className="form-check-input me-3" type="checkbox" value="" />
@@ -77,4 +98,6 @@ export default TodoList;
  * Bước 3: Xóa phần tử trong danh sách
  * Bước 4: Tạo form và xử lý form để thêm mới todo
  * Bước 5: Xử lý sự kiện khi click vào checkbox ( completed)
+ * Bước 6: Xử lý sự kiện khi click vào label để hiện thị input và 2 button
+ * Bước 7: Xử lý sự kiện khi click vào button Hủy và Lưu
  */

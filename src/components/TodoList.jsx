@@ -4,10 +4,9 @@ const TodoList = () => {
     const [inputValue, setInputValue] = useState("");
     const [todos, setTodos] = useState([
         { id: 1, title: "Học React", completed: false }, // todo
-        { id: 2, title: "Chơi liên quân mobile", completed: false }, // todo
+        { id: 2, title: "Chơi liên quân mobile", completed: true }, // todo
         { id: 3, title: "Học Javascript nâng cao", completed: false }, // todo
     ]);
-
     const removeTodo = (id) => {
         const confirm = window.confirm(`Bạn có chắc chắn muốn xóa không?`);
         if (!confirm) return;
@@ -23,6 +22,12 @@ const TodoList = () => {
         e.preventDefault();
         if (!inputValue) return;
         setTodos([...todos, { id: 4, title: inputValue, completed: false }]);
+    };
+
+    const completedTodo = (id) => {
+        setTodos(
+            todos.map((todo) => (todo.id === id ? { ...todo, completed: !todo.completed } : todo))
+        );
     };
     return (
         <div className="tw-max-w-xl tw-mx-auto tw-my-10 tw-border-2 tw-border-red-500 tw-p-5">
@@ -41,8 +46,20 @@ const TodoList = () => {
             <ul className="list-group tw-mt-2">
                 {todos.map((todo) => (
                     <li key={todo.id} className="list-group-item d-flex align-items-center">
-                        <input className="form-check-input me-3" type="checkbox" value="" />
-                        <label className="form-check-label">{todo.title}</label>
+                        <input
+                            className="form-check-input me-3"
+                            type="checkbox"
+                            value=""
+                            checked={todo.completed}
+                            onChange={() => completedTodo(todo.id)}
+                        />
+                        <label
+                            className={`form-check-label ${
+                                todo.completed ? "tw-line-through" : ""
+                            }`}
+                        >
+                            {todo.title}
+                        </label>
                         <button
                             className="btn btn-sm btn-danger ms-auto"
                             onClick={() => removeTodo(todo.id)}
@@ -80,6 +97,5 @@ export default TodoList;
  * Bước 2: Fake 1 danh sách và hiển thị ra ngoài - xong
  * Bước 3: Xóa phần tử trong mảng, dựa vào id khi click vào button xóa - xong
  * Bước 4: Tạo form và xử lý form để thêm mới todo
- * Bước 5: Xóa form
- * Bước 6: Xử lý sự kiện khi click vào checkbox ( completed)
+ * Bước 5: Xử lý sự kiện khi click vào checkbox ( completed)
  */

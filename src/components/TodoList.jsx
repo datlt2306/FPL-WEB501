@@ -21,7 +21,7 @@ const TodoList = () => {
     const onHandleSubmit = (e) => {
         // dừng sự kiện tải lại trang khi submit form
         e.preventDefault();
-        console.log("inputValue", inputValue);
+        if (!inputValue) return;
         setTodos([...todos, { id: 4, title: inputValue, completed: false }]);
     };
     return (

@@ -32,8 +32,10 @@ const TodoList = () => {
     };
 
     const startEditing = (todo) => {
-        setEditingTodo(todo.id);
-        setEditingText(todo.title);
+        if (!todo.completed) {
+            setEditingTodo(todo.id);
+            setEditingText(todo.title);
+        }
     };
     const saveEditing = (id) => {
         setTodos(
@@ -42,6 +44,7 @@ const TodoList = () => {
             })
         );
         setEditingTodo(null);
+        setEditingText("");
     };
     return (
         <div className="tw-max-w-xl tw-mx-auto tw-my-10 tw-border-2 tw-border-red-500 tw-p-5">
@@ -69,7 +72,15 @@ const TodoList = () => {
                                     onChange={(e) => setEditingText(e.target.value)}
                                 />
                                 <div className="tw-flex tw-items-center tw-space-x-2 tw-ml-2">
-                                    <button className="btn btn-sm btn-info">Hủy</button>
+                                    <button
+                                        className="btn btn-sm btn-info"
+                                        onClick={() => {
+                                            setEditingText("");
+                                            setEditingTodo(null);
+                                        }}
+                                    >
+                                        Hủy
+                                    </button>
                                     <button
                                         className="btn btn-sm btn-primary"
                                         onClick={() => saveEditing(todo.id)}

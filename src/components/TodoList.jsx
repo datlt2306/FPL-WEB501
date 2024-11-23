@@ -1,22 +1,11 @@
 import React, { useState } from "react";
 
 const TodoList = () => {
+    const [inputValue, setInputValue] = useState("");
     const [todos, setTodos] = useState([
-        {
-            id: 1,
-            title: "Học Rea t",
-            completed: false,
-        }, // todo
-        {
-            id: 2,
-            title: "Chơi liên quân mobile",
-            completed: false,
-        }, // todo
-        {
-            id: 3,
-            title: "Học Javascript nâng cao",
-            completed: false,
-        }, // todo
+        { id: 1, title: "Học React", completed: false }, // todo
+        { id: 2, title: "Chơi liên quân mobile", completed: false }, // todo
+        { id: 3, title: "Học Javascript nâng cao", completed: false }, // todo
     ]);
 
     const removeTodo = (id) => {
@@ -24,10 +13,26 @@ const TodoList = () => {
         if (!confirm) return;
         setTodos(todos.filter((todo) => todo.id !== id));
     };
+
+    const onHandleInput = (e) => {
+        console.log("onHandleInput", e.target.value);
+        setInputValue(e.target.value);
+    };
+    const onHandleSubmit = (e) => {
+        // dừng sự kiện tải lại trang khi submit form
+        e.preventDefault();
+        console.log("inputValue", inputValue);
+        setTodos([...todos, { id: 4, title: inputValue, completed: false }]);
+    };
     return (
         <div className="tw-max-w-xl tw-mx-auto tw-my-10 tw-border-2 tw-border-red-500 tw-p-5">
-            <form className="input-group">
-                <input type="text" className="form-control" placeholder="Learning Javascript" />
+            <form className="input-group" onSubmit={onHandleSubmit}>
+                <input
+                    type="text"
+                    className="form-control"
+                    placeholder="Learning Javascript"
+                    onInput={onHandleInput}
+                />
                 <button className="btn btn-primary" type="submit">
                     Thêm mới
                 </button>
@@ -71,9 +76,9 @@ const TodoList = () => {
 export default TodoList;
 
 /**
- * Bước 1: Tạo giao diện
- * Bước 2: Fake 1 danh sách và hiển thị ra ngoài
- * Bước 3: Xóa phần tử trong mảng, dựa vào id khi click vào button xóa
+ * Bước 1: Tạo giao diện - xong
+ * Bước 2: Fake 1 danh sách và hiển thị ra ngoài - xong
+ * Bước 3: Xóa phần tử trong mảng, dựa vào id khi click vào button xóa - xong
  * Bước 4: Tạo form và xử lý form để thêm mới todo
  * Bước 5: Xóa form
  * Bước 6: Xử lý sự kiện khi click vào checkbox ( completed)

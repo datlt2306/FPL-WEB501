@@ -6,6 +6,8 @@ const TodoList = () => {
         { id: 2, title: "Học Javascript", completed: false }, // todo
         { id: 3, title: "Đi chơi với người yêu", completed: false }, //todo
     ]);
+    const [editingTodo, setEditingTodo] = useState(null);
+    const [editingText, setEditingText] = useState("");
     const [inputValue, setInputValue] = useState("");
 
     const removeTodo = (id) => {
@@ -28,6 +30,19 @@ const TodoList = () => {
             })
         );
     };
+
+    const startEditing = (todo) => {
+        setEditingTodo(todo.id);
+        setEditingText(todo.title);
+    };
+    const saveEditing = (id) => {
+        setTodos(
+            todos.map((todo) => {
+                return todo.id === id ? { ...todo, title: editingText } : todo;
+            })
+        );
+        setEditingTodo(null);
+    };
     return (
         <div className="tw-max-w-xl tw-mx-auto tw-my-10 tw-border-2 tw-border-red-500 tw-p-5">
             <form className="input-group" onSubmit={onHanleSubmit}>
@@ -44,29 +59,50 @@ const TodoList = () => {
             <h2 className="tw-text-2xl tw-mt-5">Danh sách công việc</h2>
             <ul className="list-group tw-mt-2">
                 {todos.map((todo) => (
-                    <>
-                        <li key={todo.id} className="list-group-item d-flex align-items-center">
-                            <input
-                                className="form-check-input me-3"
-                                type="checkbox"
-                                checked={todo.completed}
-                                onChange={() => completedTodo(todo.id)}
-                            />
-                            <label
-                                className={`form-check-label ${
-                                    todo.completed ? "tw-line-through" : ""
-                                }`}
-                            >
-                                {todo.title}
-                            </label>
-                            <button
-                                className="btn btn-sm btn-danger ms-auto"
-                                onClick={() => removeTodo(todo.id)}
-                            >
-                                Xóa
-                            </button>
-                        </li>
-                    </>
+                    <li key={todo.id} className="list-group-item d-flex align-items-center">
+                        {editingTodo === todo.id ? (
+                            <>
+                                <input
+                                    type="text"
+                                    className="form-control input-sm"
+                                    value={editingText}
+                                    onChange={(e) => setEditingText(e.target.value)}
+                                />
+                                <div className="tw-flex tw-items-center tw-space-x-2 tw-ml-2">
+                                    <button className="btn btn-sm btn-info">Hủy</button>
+                                    <button
+                                        className="btn btn-sm btn-primary"
+                                        onClick={() => saveEditing(todo.id)}
+                                    >
+                                        Lưu
+                                    </button>
+                                </div>
+                            </>
+                        ) : (
+                            <>
+                                <input
+                                    className="form-check-input me-3"
+                                    type="checkbox"
+                                    checked={todo.completed}
+                                    onChange={() => completedTodo(todo.id)}
+                                />
+                                <label
+                                    className={`form-check-label ${
+                                        todo.completed ? "tw-line-through" : ""
+                                    }`}
+                                    onClick={() => startEditing(todo)}
+                                >
+                                    {todo.title}
+                                </label>
+                                <button
+                                    className="btn btn-sm btn-danger ms-auto"
+                                    onClick={() => removeTodo(todo.id)}
+                                >
+                                    Xóa
+                                </button>
+                            </>
+                        )}
+                    </li>
                 ))}
                 {/* <li className="list-group-item d-flex align-items-center">
                     <input className="form-check-input me-3" type="checkbox" value="" />

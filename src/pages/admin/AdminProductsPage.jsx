@@ -8,6 +8,17 @@ const AdminProductsPage = () => {
             .then((response) => response.json())
             .then((data) => setProducts(data));
     }, []);
+
+    const removeItem = (id) => {
+        const confirm = window.confirm(`Bạn có chắc chắn muốn xóa không?`);
+        if (!confirm) return;
+
+        // xóa item khỏi server
+        fetch(`http://localhost:3000/products/${id}`, { method: "DELETE" }).then(() => {
+            // rerender
+            setProducts(products.filter((item) => item.id !== id));
+        });
+    };
     return (
         // 2
         <div>
@@ -67,7 +78,12 @@ const AdminProductsPage = () => {
                                     )}
                                 </td>
                                 <td width={250}>
-                                    <button className="btn btn-danger">Xóa</button>
+                                    <button
+                                        className="btn btn-danger"
+                                        onClick={() => removeItem(item.id)}
+                                    >
+                                        Xóa
+                                    </button>
                                     <button className="ms-1 btn btn-primary">Cập nhật</button>
                                 </td>
                             </tr>

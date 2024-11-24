@@ -1,6 +1,23 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 const AdminProductsPage = () => {
+    const [products, setProducts] = useState([]);
+
+    useEffect(() => {
+        // call api để lấy dữ liệu
+        fetch(`http://localhost:3000/products`)
+            .then((response) => response.json())
+            .then((data) => setProducts(data));
+    }, []);
+
+    const removeProduct = (id) => {
+        const confirm = window.confirm(`Bạn có chắc chắn muốn xóa không?`);
+        if (!confirm) return;
+        // xóa sản phẩm ở server
+        fetch(`http://localhost:3000/products/${id}`, { method: "DELETE" }).then(() => {
+            setProducts(products.filter((item) => item.id !== id));
+        });
+    };
     return (
         <div>
             <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
@@ -25,27 +42,41 @@ const AdminProductsPage = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td width={50}>1</td>
-                        <td width={60}>
-                            <img
-                                src="https://picsum.photos/id/1/300/300"
-                                alt="sản phẩm 1"
-                                width={50}
-                                height={50}
-                            />
-                        </td>
-                        <td>Sản phẩm 1</td>
-                        <td>$100</td>
-                        <td>
-                            <span className="badge text-bg-success">Còn hàng</span>
-                            <span className="badge text-bg-secondary">Hết hàng</span>
-                        </td>
-                        <td width={250}>
-                            <button className="btn btn-outline-danger">Xóa</button>
-                            <button className="btn btn-outline-primary ms-1">Cập nhật</button>
-                        </td>
-                    </tr>
+                    {products.map((item, index) => {
+                        return (
+                            <tr key={item.id}>
+                                <td width={50}>{index + 1}</td>
+                                <td width={60}>
+                                    <img
+                                        src="https://picsum.photos/id/1/300/300"
+                                        alt="sản phẩm 1"
+                                        width={50}
+                                        height={50}
+                                    />
+                                </td>
+                                <td>{item.name}</td>
+                                <td>${item.price}</td>
+                                <td>
+                                    {item.inStock ? (
+                                        <span className="badge text-bg-success">Còn hàng</span>
+                                    ) : (
+                                        <span className="badge text-bg-secondary">Hết hàng</span>
+                                    )}
+                                </td>
+                                <td width={250}>
+                                    <button
+                                        className="btn btn-outline-danger"
+                                        onClick={() => removeProduct(item.id)}
+                                    >
+                                        Xóa
+                                    </button>
+                                    <button className="btn btn-outline-primary ms-1">
+                                        Cập nhật
+                                    </button>
+                                </td>
+                            </tr>
+                        );
+                    })}
                 </tbody>
             </table>
         </div>

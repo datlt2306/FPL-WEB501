@@ -148,3 +148,9 @@ export default TodoList;
  * Bước 7: Xử lý sự kiện khi click vào button hủy và lưu
  * Bước 8: Nếu todo đã hoàn thành thì không cho phép sửa
  */
+
+console.log(1); // 1 div
+setTimeout(() => {
+    console.log(2); // 2 // gọi dữ liệu từ server
+});
+console.log(3); // 3 // hiển thị ra ngoài màn hình

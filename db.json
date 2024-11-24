@@ -1,74 +1,60 @@
 {
-    "products": [
-        {
-            "id": 1,
-            "name": "Product 1",
-            "imageUrl": "https://picsum.photos/id/1/200/300",
-            "price": 10.99,
-            "inStock": true
-        },
-        {
-            "id": 2,
-            "name": "Product 2",
-            "imageUrl": "https://picsum.photos/id/2/200/300",
-            "price": 12.99,
-            "inStock": false
-        },
-        {
-            "id": 3,
-            "name": "Product 3",
-            "imageUrl": "https://picsum.photos/id/3/200/300",
-            "price": 15.99,
-            "inStock": true
-        },
-        {
-            "id": 4,
-            "name": "Product 4",
-            "imageUrl": "https://picsum.photos/id/4/200/300",
-            "price": 9.99,
-            "inStock": true
-        },
-        {
-            "id": 5,
-            "name": "Product 5",
-            "imageUrl": "https://picsum.photos/id/5/200/300",
-            "price": 20.99,
-            "inStock": false
-        },
-        {
-            "id": 6,
-            "name": "Product 6",
-            "imageUrl": "https://picsum.photos/id/6/200/300",
-            "price": 25.99,
-            "inStock": true
-        },
-        {
-            "id": 7,
-            "name": "Product 7",
-            "imageUrl": "https://picsum.photos/id/7/200/300",
-            "price": 30.99,
-            "inStock": true
-        },
-        {
-            "id": 8,
-            "name": "Product 8",
-            "imageUrl": "https://picsum.photos/id/8/200/300",
-            "price": 18.99,
-            "inStock": false
-        },
-        {
-            "id": 9,
-            "name": "Product 9",
-            "imageUrl": "https://picsum.photos/id/9/200/300",
-            "price": 22.99,
-            "inStock": true
-        },
-        {
-            "id": 10,
-            "name": "Product 10",
-            "imageUrl": "https://picsum.photos/id/10/200/300",
-            "price": 19.99,
-            "inStock": true
-        }
-    ]
+  "products": [
+    {
+      "id": 3,
+      "name": "Product 3",
+      "imageUrl": "https://picsum.photos/id/3/200/300",
+      "price": 15.99,
+      "inStock": true
+    },
+    {
+      "id": 4,
+      "name": "Product 4",
+      "imageUrl": "https://picsum.photos/id/4/200/300",
+      "price": 9.99,
+      "inStock": true
+    },
+    {
+      "id": 5,
+      "name": "Product 5",
+      "imageUrl": "https://picsum.photos/id/5/200/300",
+      "price": 20.99,
+      "inStock": false
+    },
+    {
+      "id": 6,
+      "name": "Product 6",
+      "imageUrl": "https://picsum.photos/id/6/200/300",
+      "price": 25.99,
+      "inStock": true
+    },
+    {
+      "id": 7,
+      "name": "Product 7",
+      "imageUrl": "https://picsum.photos/id/7/200/300",
+      "price": 30.99,
+      "inStock": true
+    },
+    {
+      "id": 8,
+      "name": "Product 8",
+      "imageUrl": "https://picsum.photos/id/8/200/300",
+      "price": 18.99,
+      "inStock": false
+    },
+    {
+      "id": 9,
+      "name": "Product 9",
+      "imageUrl": "https://picsum.photos/id/9/200/300",
+      "price": 22.99,
+      "inStock": true
+    },
+    {
+      "id": 10,
+      "name": "Product 10",
+      "imageUrl": "https://picsum.photos/id/10/200/300",
+      "price": 19.99,
+      "inStock": true
+    }
+  ]
 }

@@ -1,7 +1,15 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 const AdminProductsPage = () => {
+    const [products, setProducts] = useState([]); // 1
+
+    useEffect(() => {
+        fetch(`http://localhost:3000/products`)
+            .then((response) => response.json())
+            .then((data) => setProducts(data));
+    }, []);
     return (
+        // 2
         <div>
             <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
                 <h1 className="h2">Quản lý sản phẩm</h1>
@@ -29,6 +37,7 @@ const AdminProductsPage = () => {
                 <thead>
                     <tr>
                         <th>#</th>
+                        <th>Ảnh</th>
                         <th>Tên sản phẩm</th>
                         <th>Giá sản phẩm</th>
                         <th>Tình trạng</th>
@@ -36,16 +45,34 @@ const AdminProductsPage = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Sản phẩm A</td>
-                        <td>$200</td>
-                        <td>Còn hàng</td>
-                        <td width={250}>
-                            <button className="btn btn-danger">Xóa</button>
-                            <button className="ms-1 btn btn-primary">Cập nhật</button>
-                        </td>
-                    </tr>
+                    {products.map((item, index) => {
+                        return (
+                            <tr key={item.id}>
+                                <td width={50}>{index + 1}</td>
+                                <td width={60}>
+                                    <img
+                                        src={item.imageUrl}
+                                        alt={item.name}
+                                        width={50}
+                                        height={50}
+                                    />
+                                </td>
+                                <td>{item.name}</td>
+                                <td>${item.price}</td>
+                                <td>
+                                    {item.inStock ? (
+                                        <span className="badge text-bg-success">Còn hàng</span>
+                                    ) : (
+                                        <span className="badge text-bg-secondary">Hết hàng</span>
+                                    )}
+                                </td>
+                                <td width={250}>
+                                    <button className="btn btn-danger">Xóa</button>
+                                    <button className="ms-1 btn btn-primary">Cập nhật</button>
+                                </td>
+                            </tr>
+                        );
+                    })}
                 </tbody>
             </table>
         </div>

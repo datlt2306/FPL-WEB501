@@ -23,3 +23,10 @@ function App() {
 }
 
 export default App;
+
+// B1: npm install -g json-server@0.17.4
+// B2: Tạo file db.json với nội dung như file thầy gửi.
+// B3: Truy cập file package.json
+// B4: Thêm vào scripts:
+// "server": "json-server --watch db.json"
+// B5: Chạy lệnh: npm run server

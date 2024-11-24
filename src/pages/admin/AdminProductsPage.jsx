@@ -25,6 +25,29 @@ const AdminProductsPage = () => {
                     </button>
                 </div>
             </div>
+            <table className="table">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Tên sản phẩm</th>
+                        <th>Giá sản phẩm</th>
+                        <th>Tình trạng</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Sản phẩm A</td>
+                        <td>$200</td>
+                        <td>Còn hàng</td>
+                        <td width={250}>
+                            <button className="btn btn-danger">Xóa</button>
+                            <button className="ms-1 btn btn-primary">Cập nhật</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     );
 };

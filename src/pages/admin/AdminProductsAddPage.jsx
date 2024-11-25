@@ -15,6 +15,14 @@ const AdminProductsAddPage = () => {
                         </Link>
                     </div>
                 </div>
+                {/* 
+                    Tên - input type text
+                    Giá - input type number
+                    Ảnh - input type text
+                    Tình trạng - input type radio
+                    Mô tả - textarea
+                    button - type submit
+                */}
             </div>
         </div>
     );

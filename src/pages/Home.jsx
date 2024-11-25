@@ -1,8 +1,10 @@
 import React from "react";
+import Banner from "../components/Banner";
 
 const HomePage = () => {
     return (
         <div className="container marketing">
+            <Banner />
             {/* Three columns of text below the carousel */}
             <div className="row">
                 <div className="col-lg-4">

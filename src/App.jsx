@@ -27,3 +27,10 @@ const App = () => {
     );
 };
 export default App;
+
+/**
+ * B1: npm i -g json-server@0.17.4
+ * B2: Tạo file db.json ở thư mục gốc với nội dung có sẵn
+ * B3: truy cập file package.json, thêm dòng "server": "json-server --watch db.json" vào scripts
+ * B3: npm run server
+ */

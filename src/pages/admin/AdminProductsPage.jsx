@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 const AdminProductsPage = () => {
     // console.log(1)
@@ -26,9 +27,11 @@ const AdminProductsPage = () => {
                 <h1 className="h2">Quản lý sản phẩm</h1>
                 <div className="btn-toolbar mb-2 mb-md-0">
                     <div className="btn-group me-2">
-                        <button type="button" className="btn btn-sm btn-outline-primary">
-                            Thêm sản phẩm
-                        </button>
+                        <Link to="/admin/products/add">
+                            <button type="button" className="btn btn-sm btn-outline-primary">
+                                Thêm sản phẩm
+                            </button>
+                        </Link>
                     </div>
                 </div>
             </div>

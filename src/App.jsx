@@ -5,6 +5,7 @@ import LayoutWebsite from "./components/LayoutWebsite";
 import LayoutAdmin from "./components/LayoutAdmin";
 import DashboardPage from "./pages/admin/DashboardPage";
 import AdminProductsPage from "./pages/admin/AdminProductsPage";
+import AddProduct from "./pages/admin/AddProduct";
 const App = () => {
     return (
         <div>
@@ -17,6 +18,7 @@ const App = () => {
                     <Route index element={<Navigate to="dashboard" />} />
                     <Route path="dashboard" element={<DashboardPage />} />
                     <Route path="products" element={<AdminProductsPage />} />
+                    <Route path="products/add" element={<AddProduct />} />
                 </Route>
             </Routes>
         </div>

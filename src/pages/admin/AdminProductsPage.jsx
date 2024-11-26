@@ -1,11 +1,17 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 const AdminProductsPage = () => {
     const [products, setProducts] = useState([]); // 1
 
     useEffect(() => {
         fetch(`http://localhost:3000/products`)
-            .then((response) => response.json())
+            .then((response) => {
+                if (!response.ok) {
+                    throw new Error("API chưa bật");
+                }
+                return response.json();
+            })
             .then((data) => setProducts(data));
     }, []);
 
@@ -26,22 +32,12 @@ const AdminProductsPage = () => {
                 <h1 className="h2">Quản lý sản phẩm</h1>
                 <div className="btn-toolbar mb-2 mb-md-0">
                     <div className="btn-group me-2">
-                        <button type="button" className="btn btn-sm btn-outline-secondary">
-                            Share
-                        </button>
-                        <button type="button" className="btn btn-sm btn-outline-secondary">
-                            Export
-                        </button>
+                        <Link to="/admin/products/add">
+                            <button type="button" className="btn btn-primary">
+                                Thêm sản phẩm
+                            </button>
+                        </Link>
                     </div>
-                    <button
-                        type="button"
-                        className="btn btn-sm btn-outline-secondary dropdown-toggle d-flex align-items-center gap-1"
-                    >
-                        <svg className="bi">
-                            <use xlinkHref="#calendar3" />
-                        </svg>
-                        This week
-                    </button>
                 </div>
             </div>
             <table className="table">
@@ -96,3 +92,17 @@ const AdminProductsPage = () => {
 };
 
 export default AdminProductsPage;
+
+/**
+ * B1: Khai báo state
+ * B2: render ra giao diện quản lý sản phẩm
+ * B3: Sử dụng hooks useEffect() để lấy dữ liệu từ server ( API sử dụng fetch())
+ * B4: Set dữ liệu vào state
+ *
+ *
+ * GET http://localhost:3000/products => trả về danh sách sản phẩm
+ * GET http://localhost:3000/products/${id} => trả về sản phẩm theo id
+ * DELETE http://localhost:3000/products/${id} => xóa sản phẩm theo id
+ * POST http://localhost:3000/products, phải thêm object body => thêm sản phẩm
+ * PUT | PATCH http://localhost:3000/products/${id}, phải thêm object body => cập nhật sản phẩm
+ */

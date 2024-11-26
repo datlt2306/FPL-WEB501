@@ -1,27 +1,6 @@
 {
   "products": [
     {
-      "id": 2,
-      "name": "Product 2",
-      "imageUrl": "https://picsum.photos/id/2/300/300",
-      "price": 12.99,
-      "inStock": false
-    },
-    {
-      "id": 3,
-      "name": "Product 3",
-      "imageUrl": "https://picsum.photos/id/3/300/300",
-      "price": 15.99,
-      "inStock": true
-    },
-    {
-      "id": 4,
-      "name": "Product 4",
-      "imageUrl": "https://picsum.photos/id/4/300/300",
-      "price": 9.99,
-      "inStock": true
-    },
-    {
       "id": 5,
       "name": "Product 5",
       "imageUrl": "https://picsum.photos/id/5/300/300",

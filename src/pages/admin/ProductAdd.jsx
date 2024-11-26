@@ -1,7 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 const ProductAdd = () => {
+    const [inputValue, setInputValue] = useState({});
+    const onHandleChange = (e) => {
+        const { name, value } = e.target;
+        setInputValue({ ...inputValue, [name]: value });
+    };
+    const onHandleSubmit = (e) => {
+        e.preventDefault();
+        if (!inputValue) return;
+        fetch(`http://localhost:3000/products`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(inputValue),
+        });
+    };
     return (
         <div>
             <header className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
@@ -16,18 +32,30 @@ const ProductAdd = () => {
                     </div>
                 </div>
             </header>
-            <form>
+            <form onSubmit={onHandleSubmit}>
                 <div className="mb-3">
                     <label htmlFor="" className="form-label">
                         Tên sản phẩm
                     </label>
-                    <input type="text" className="form-control" placeholder="Sản phẩm A" />
+                    <input
+                        type="text"
+                        className="form-control"
+                        placeholder="Sản phẩm A"
+                        name="name"
+                        onChange={onHandleChange}
+                    />
                 </div>
                 <div className="mb-3">
                     <label htmlFor="" className="form-label">
                         Giá sản phẩm
                     </label>
-                    <input type="number" className="form-control" placeholder="$200" />
+                    <input
+                        type="number"
+                        className="form-control"
+                        placeholder="$200"
+                        name="price"
+                        onChange={onHandleChange}
+                    />
                 </div>
                 <div className="mb-3">
                     <label htmlFor="" className="form-label">
@@ -37,9 +65,11 @@ const ProductAdd = () => {
                         <input
                             className="form-check-input"
                             type="radio"
-                            name="flexRadioDefault"
+                            name="inStock"
+                            value={true}
                             id="flexRadioDefault1"
                             defaultChecked
+                            onChange={onHandleChange}
                         />
                         <label className="form-check-label" htmlFor="flexRadioDefault1">
                             Còn hàng
@@ -49,8 +79,10 @@ const ProductAdd = () => {
                         <input
                             className="form-check-input"
                             type="radio"
-                            name="flexRadioDefault"
+                            name="inStock"
+                            value={false}
                             id="flexRadioDefault2"
+                            onChange={onHandleChange}
                         />
                         <label className="form-check-label" htmlFor="flexRadioDefault2">
                             Hết hàng
@@ -61,13 +93,23 @@ const ProductAdd = () => {
                     <label htmlFor="" className="form-label">
                         Ảnh sản phẩm
                     </label>
-                    <input type="text" className="form-control" />
+                    <input
+                        type="text"
+                        className="form-control"
+                        name="imageUrl"
+                        onChange={onHandleChange}
+                    />
                 </div>
                 <div className="mb-3">
                     <label htmlFor="" className="form-label">
                         Mô tả sản phẩm
                     </label>
-                    <textarea name="" className="form-control" rows={4} id=""></textarea>
+                    <textarea
+                        name="description"
+                        className="form-control"
+                        rows={4}
+                        onChange={onHandleChange}
+                    ></textarea>
                 </div>
                 <div className="mb-3">
                     <button className="btn btn-primary" type="submit">

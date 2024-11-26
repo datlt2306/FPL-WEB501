@@ -36,3 +36,13 @@ export default App;
 
 // /admin -> render dashboard page
 // /admin -> redirect to /admin/dashboard -> render dashboard page
+
+/*
+ *
+ *
+ * GET http://localhost:3000/products => trả về danh sách sản phẩm
+ * GET http://localhost:3000/products/${id} => trả về sản phẩm theo id
+ * DELETE http://localhost:3000/products/${id} => xóa sản phẩm theo id
+ * POST http://localhost:3000/products, phải thêm object body => thêm sản phẩm
+ * PUT | PATCH http://localhost:3000/products/${id}, phải thêm object body => cập nhật sản phẩm
+ */

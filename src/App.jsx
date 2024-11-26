@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import ProductsPage from "./pages/ProductsPage";
 import LayoutWebsite from "./components/LayoutWebsite";
@@ -14,7 +14,8 @@ const App = () => {
                     <Route path="products" element={<ProductsPage />} />
                 </Route>
                 <Route path="admin" element={<LayoutAdmin />}>
-                    <Route index element={<DashboardPage />} />
+                    <Route index element={<Navigate to="dashboard" />} />
+                    <Route path="dashboard" element={<DashboardPage />} />
                     <Route path="products" element={<AdminProductsPage />} />
                 </Route>
             </Routes>
@@ -28,3 +29,5 @@ export default App;
 // B3: truy cập file package.json và thêm dòng "server": "json-server --watch db.json" vào scripts
 // B4: npm run server
 // B5: truy cập api http://localhost:3000/products
+
+// /admin - redirect -> /admin/dashboard

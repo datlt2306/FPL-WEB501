@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 
 const AdminProductsPage = () => {
+    // console.log(1)
     const [products, setProducts] = useState([]);
-
+    // setTimeOut(() => { console.log(2)})
     useEffect(() => {
         // call api để lấy dữ liệu
         fetch(`http://localhost:3000/products`)
@@ -18,6 +19,7 @@ const AdminProductsPage = () => {
             setProducts(products.filter((item) => item.id !== id));
         });
     };
+    // console.log(3)
     return (
         <div>
             <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
@@ -84,3 +86,9 @@ const AdminProductsPage = () => {
 };
 
 export default AdminProductsPage;
+
+// GET /products: lấy danh sách sản phẩm
+// GET /prodcts/${id}: lấy chi tiết sản phẩm
+// DELETE /products/${id}: xóa sản phẩm
+// POST /products, cần thêm body(sản phẩm): thêm sản phẩm
+// PUT | PATCH /products/${id}, cần thêm body(sản phẩm): cập nhật sản phẩm

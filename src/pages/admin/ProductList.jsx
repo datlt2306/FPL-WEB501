@@ -1,27 +1,25 @@
+import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-const AdminProductsPage = () => {
+const ProductList = () => {
     const [products, setProducts] = useState([]); // 1
     useEffect(() => {
-        // 3
-        fetch(`http://localhost:3000/products`)
-            .then((response) => response.json())
-            .then((data) => setProducts(data))
-            .catch((error) => console.log(error.message));
+        const fetchProducts = async () => {
+            const response = await axios.get("http://localhost:3000/products");
+            setProducts(response.data);
+        };
+        fetchProducts();
     }, []);
 
-    const removeItem = (id) => {
+    const removeItem = async (id) => {
         const confirm = window.confirm(`Bạn có chắc chắn muốn xóa không?`);
         if (!confirm) return;
         // Xóa trên server
-        fetch(`http://localhost:3000/products/${id}`, { method: "DELETE" })
-            .then(() => {
-                alert(`Xóa sản phẩm thành công`);
-                // rerender lại giao diện
-                setProducts(products.filter((item) => item.id !== id));
-            })
-            .catch((error) => console.log(error.message));
+
+        await axios.delete(`http://localhost:3000/products/${id}`);
+        alert(`Xóa sản phẩm thành công`);
+        setProducts(products.filter((item) => item.id !== id));
     };
     return (
         // 2
@@ -78,60 +76,22 @@ const AdminProductsPage = () => {
                                     >
                                         Xóa
                                     </button>
-                                    <button className="btn btn-outline-primary ms-2">
-                                        Cập nhật
-                                    </button>
+                                    <Link to={`/admin/products/${item.id}/edit`}>
+                                        <button className="btn btn-outline-primary ms-2">
+                                            Cập nhật
+                                        </button>
+                                    </Link>
                                 </td>
                             </tr>
                         );
                     })}
-                    {/* <tr>
-                        <td>1</td>
-                        <td width={60}>
-                            <img
-                                src="https://picsum.photos/id/1/300/300"
-                                alt="Sản phẩm 1"
-                                width={50}
-                                height={50}
-                            />
-                        </td>
-                        <td>Sản phẩm 1</td>
-                        <td>$100</td>
-                        <td>
-                            <span className="badge text-bg-success">Còn hàng</span>
-                        </td>
-                        <td width={250}>
-                            <button className="btn btn-outline-danger">Xóa</button>
-                            <button className="btn btn-outline-primary ms-2">Cập nhật</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td width={60}>
-                            <img
-                                src="https://picsum.photos/id/2/300/300"
-                                alt="Sản phẩm 1"
-                                width={50}
-                                height={50}
-                            />
-                        </td>
-                        <td>Sản phẩm 2</td>
-                        <td>$200</td>
-                        <td>
-                            <span className="badge text-bg-secondary">Hết hàng</span>
-                        </td>
-                        <td width={250}>
-                            <button className="btn btn-outline-danger">Xóa</button>
-                            <button className="btn btn-outline-primary ms-2">Cập nhật</button>
-                        </td>
-                    </tr> */}
                 </tbody>
             </table>
         </div>
     );
 };
 
-export default AdminProductsPage;
+export default ProductList;
 
 /**
  * GET http://localhost:3000/products => toàn bộ sản phẩm
@@ -140,9 +100,3 @@ export default AdminProductsPage;
  * PUT http://localhost:3000/products/{id} - đi kèm với thông tin sản phẩm => cập nhật sản phẩm
  * DELETE http://localhost:3000/products/{id} => xóa sản phẩm
  */
-
-console.log("1");
-setTimeout(() => {
-    console.log("2");
-});
-console.log("3");

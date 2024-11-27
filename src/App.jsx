@@ -2,11 +2,14 @@
 import { Navigate, Route, Routes } from "react-router-dom";
 import LayoutAdmin from "./components/LayoutAdmin";
 import LayoutWebsite from "./components/LayoutWebsite";
-import AdminProductsPage from "./pages/admin/AdminProductsPage";
-import AdminProductsAddPage from "./pages/admin/AdminProductsAddPage";
+import Dashboard from "./pages/admin/Dashboard";
+import ProductAdd from "./pages/admin/ProductAdd";
+import ProductList from "./pages/admin/ProductList";
 import HomePage from "./pages/Home";
 import ProductsPage from "./pages/Products";
-import Dashboard from "./pages/admin/Dashboard";
+import ProductEdit from "./pages/admin/ProductEdit";
+import Signup from "./pages/Signup";
+import Signin from "./pages/Signin";
 
 const App = () => {
     return (
@@ -15,12 +18,15 @@ const App = () => {
                 <Route path="/" element={<LayoutWebsite />}>
                     <Route index element={<HomePage />} />
                     <Route path="products" element={<ProductsPage />} />
+                    <Route path="signup" element={<Signup />} />
+                    <Route path="signin" element={<Signin />} />
                 </Route>
                 <Route path="admin" element={<LayoutAdmin />}>
                     <Route index element={<Navigate to="dashboard" />} />
                     <Route path="dashboard" element={<Dashboard />} />
-                    <Route path="products" element={<AdminProductsPage />} />
-                    <Route path="products/add" element={<AdminProductsAddPage />} />
+                    <Route path="products" element={<ProductList />} />
+                    <Route path="products/add" element={<ProductAdd />} />
+                    <Route path="products/:id/edit" element={<ProductEdit />} />
                 </Route>
             </Routes>
         </>

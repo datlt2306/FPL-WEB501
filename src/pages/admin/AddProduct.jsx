@@ -1,7 +1,27 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 const AddProduct = () => {
+    const [inputValue, setInputValue] = useState({});
+    const onHandleInput = (e) => {
+        const { name, value } = e.target;
+        // name => price
+        // value => 200
+        setInputValue({ ...inputValue, [name]: value });
+
+        // computed property name => Lấy giá trị làm tên thuộc tính
+    };
+    const onHandleSubmit = (e) => {
+        e.preventDefault();
+        if (!inputValue) return;
+        fetch(`http://localhost:3000/products`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(inputValue),
+        });
+    };
     return (
         <>
             <header className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
@@ -16,7 +36,7 @@ const AddProduct = () => {
                     </div>
                 </div>
             </header>
-            <form>
+            <form onSubmit={onHandleSubmit}>
                 <div className="mb-3">
                     <label htmlFor="" className="form-label">
                         Tên sản phẩm
@@ -26,13 +46,20 @@ const AddProduct = () => {
                         className="form-control"
                         placeholder="Sản phẩm A"
                         name="name"
+                        onInput={onHandleInput}
                     />
                 </div>
                 <div className="mb-3">
                     <label htmlFor="" className="form-label">
                         Giá sản phẩm
                     </label>
-                    <input type="number" className="form-control" placeholder="$200" name="price" />
+                    <input
+                        type="number"
+                        className="form-control"
+                        placeholder="$200"
+                        name="price"
+                        onInput={onHandleInput}
+                    />
                 </div>
                 <div className="mb-3">
                     <label htmlFor="" className="form-label">
@@ -46,6 +73,7 @@ const AddProduct = () => {
                             value={true}
                             id="flexRadioDefault1"
                             defaultChecked
+                            onInput={onHandleInput}
                         />
                         <label className="form-check-label" htmlFor="flexRadioDefault1">
                             Còn hàng
@@ -58,6 +86,7 @@ const AddProduct = () => {
                             name="inStock"
                             value={false}
                             id="flexRadioDefault2"
+                            onInput={onHandleInput}
                         />
                         <label className="form-check-label" htmlFor="flexRadioDefault2">
                             Hết hàng
@@ -68,13 +97,23 @@ const AddProduct = () => {
                     <label htmlFor="" className="form-label">
                         Ảnh sản phẩm
                     </label>
-                    <input type="text" className="form-control" name="imageUrl" />
+                    <input
+                        type="text"
+                        className="form-control"
+                        name="imageUrl"
+                        onInput={onHandleInput}
+                    />
                 </div>
                 <div className="mb-3">
                     <label htmlFor="" className="form-label">
                         Mô tả sản phẩm
                     </label>
-                    <textarea name="description" className="form-control" rows={4}></textarea>
+                    <textarea
+                        name="description"
+                        className="form-control"
+                        rows={4}
+                        onInput={onHandleInput}
+                    ></textarea>
                 </div>
                 <div className="mb-3">
                     <button className="btn btn-primary" type="submit">

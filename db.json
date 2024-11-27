@@ -42,6 +42,22 @@
       "imageUrl": "123131",
       "description": "32131",
       "id": 11
+    },
+    {
+      "name": "Sản phẩm 12",
+      "price": "12311",
+      "inStock": "true",
+      "imageUrl": "",
+      "description": "",
+      "id": 12
+    },
+    {
+      "name": "Sản phẩm 13",
+      "price": "300",
+      "inStock": "false",
+      "imageUrl": "123131",
+      "description": "31231",
+      "id": 13
     }
   ]
 }

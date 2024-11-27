@@ -1,8 +1,9 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const AdminProductsAddPage = () => {
+    const navigate = useNavigate();
     const {
         register,
         handleSubmit,
@@ -18,6 +19,7 @@ const AdminProductsAddPage = () => {
             body: JSON.stringify(formData),
         }).then(() => {
             alert("Thêm sản phẩm thành công");
+            navigate("/admin/products");
         });
     };
     return (

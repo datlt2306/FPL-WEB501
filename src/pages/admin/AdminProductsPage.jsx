@@ -75,9 +75,11 @@ const AdminProductsPage = () => {
                                     >
                                         Xóa
                                     </button>
-                                    <button className="btn btn-outline-primary ms-1">
-                                        Cập nhật
-                                    </button>
+                                    <Link to={`/admin/products/${item.id}/edit`}>
+                                        <button className="btn btn-outline-primary ms-1">
+                                            Cập nhật
+                                        </button>
+                                    </Link>
                                 </td>
                             </tr>
                         );

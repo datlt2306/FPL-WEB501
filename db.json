@@ -2,10 +2,11 @@
   "products": [
     {
       "id": 6,
-      "name": "Product 6",
+      "name": "Product 6 update",
       "imageUrl": "https://picsum.photos/id/6/200/300",
-      "price": 25.99,
-      "inStock": true
+      "price": "2599",
+      "inStock": "true",
+      "description": ""
     },
     {
       "id": 7,
@@ -50,6 +51,14 @@
       "imageUrl": "Ảnh",
       "description": "Mô tả",
       "id": 12
+    }
+  ],
+  "users": [
+    {
+      "email": "admin@gmail.com",
+      "password": "$2a$10$8rXzuv1qeGMLRyHeBTAdWuJREe.ujzXy3PQ4FIB.loGrWnLC5jOpC",
+      "username": "admin@gmail.com",
+      "id": 1
     }
   ]
 }

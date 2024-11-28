@@ -6,6 +6,9 @@ import LayoutAdmin from "./components/LayoutAdmin";
 import DashboardPage from "./pages/admin/DashboardPage";
 import AdminProductsPage from "./pages/admin/AdminProductsPage";
 import AddProduct from "./pages/admin/AddProduct";
+import EditProduct from "./pages/admin/EditProduct";
+import Signup from "./pages/Signup";
+import Signin from "./pages/Signin";
 const App = () => {
     return (
         <div>
@@ -13,12 +16,15 @@ const App = () => {
                 <Route path="/" element={<LayoutWebsite />}>
                     <Route index element={<HomePage />} />
                     <Route path="products" element={<ProductsPage />} />
+                    <Route path="signup" element={<Signup />} />
+                    <Route path="signin" element={<Signin />} />
                 </Route>
                 <Route path="admin" element={<LayoutAdmin />}>
                     <Route index element={<Navigate to="dashboard" />} />
                     <Route path="dashboard" element={<DashboardPage />} />
                     <Route path="products" element={<AdminProductsPage />} />
                     <Route path="products/add" element={<AddProduct />} />
+                    <Route path="products/:id/edit" element={<EditProduct />} />
                 </Route>
             </Routes>
         </div>
@@ -41,4 +47,11 @@ export default App;
  * 3. Sử dụng async/await làm việc thay cho .then() và .catch()
  * 4. Hoàn thiện cập nhật sản phẩm
  * 5. Sử dụng json-server-auth để hoàn thiện chức năng đăng ký/Đăng nhập
+ */
+
+/**============== Đăng ký/Đăng nhập ================ */
+
+/**
+ * B1: Cài đặt json-server-auth: npm i json-server-auth -D
+ * B2: Tạo 1 collection user mới trong db.json => "users": []
  */

@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
@@ -5,25 +6,34 @@ const AdminProductsPage = () => {
     const [products, setProducts] = useState([]); // 1
 
     useEffect(() => {
-        fetch(`http://localhost:3000/products`)
-            .then((response) => {
-                if (!response.ok) {
-                    throw new Error("API chưa bật");
-                }
-                return response.json();
-            })
-            .then((data) => setProducts(data));
+        const fetchProducts = async () => {
+            const { data } = await axios(`http://localhost:3000/products`);
+            setProducts(data);
+        };
+        fetchProducts();
+        // fetch(`http://localhost:3000/products`)
+        //     .then((response) => {
+        //         if (!response.ok) {
+        //             throw new Error("API chưa bật");
+        //         }
+        //         return response.json();
+        //     })
+        //     .then((data) => setProducts(data));
     }, []);
 
-    const removeItem = (id) => {
+    const removeItem = async (id) => {
         const confirm = window.confirm(`Bạn có chắc chắn muốn xóa không?`);
         if (!confirm) return;
 
         // xóa item khỏi server
-        fetch(`http://localhost:3000/products/${id}`, { method: "DELETE" }).then(() => {
-            // rerender
-            setProducts(products.filter((item) => item.id !== id));
-        });
+        await axios.delete(`http://localhost:3000/products/${id}`);
+        alert("Xóa sản phẩm thành công");
+        setProducts(products.filter((item) => item.id !== id));
+
+        // fetch(`http://localhost:3000/products/${id}`, { method: "DELETE" }).then(() => {
+        //     // rerender
+        //     setProducts(products.filter((item) => item.id !== id));
+        // });
     };
     return (
         // 2

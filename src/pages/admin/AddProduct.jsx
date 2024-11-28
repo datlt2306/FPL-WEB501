@@ -1,26 +1,20 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import axios from "axios";
+import React from "react";
+import { useForm } from "react-hook-form";
+import { Link, useNavigate } from "react-router-dom";
 
 const AddProduct = () => {
-    const [inputValue, setInputValue] = useState({});
-    const onHandleInput = (e) => {
-        const { name, value } = e.target;
-        // name => price
-        // value => 200
-        setInputValue({ ...inputValue, [name]: value });
+    const navigate = useNavigate();
+    const {
+        register,
+        handleSubmit,
+        formState: { errors },
+    } = useForm();
 
-        // computed property name => Lấy giá trị làm tên thuộc tính
-    };
-    const onHandleSubmit = (e) => {
-        e.preventDefault();
-        if (!inputValue) return;
-        fetch(`http://localhost:3000/products`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(inputValue),
-        });
+    const onHandleSubmit = async (formData) => {
+        await axios.post(`http://localhost:3000/products`, formData);
+        alert("Thêm sản phẩm thành công");
+        navigate("/admin/products");
     };
     return (
         <>
@@ -36,7 +30,7 @@ const AddProduct = () => {
                     </div>
                 </div>
             </header>
-            <form onSubmit={onHandleSubmit}>
+            <form onSubmit={handleSubmit(onHandleSubmit)}>
                 <div className="mb-3">
                     <label htmlFor="" className="form-label">
                         Tên sản phẩm
@@ -45,9 +39,18 @@ const AddProduct = () => {
                         type="text"
                         className="form-control"
                         placeholder="Sản phẩm A"
-                        name="name"
-                        onInput={onHandleInput}
+                        {...register("name", { required: true, minLength: 5 })}
                     />
+                    {errors?.name?.type === "required" && (
+                        <span className="text-danger tw-mt-2 tw-block">
+                            Tên sản phẩm không được để trống
+                        </span>
+                    )}
+                    {errors?.name?.type === "minLength" && (
+                        <span className="text-danger tw-mt-2 tw-block">
+                            Tên sản phẩm ít nhất 5 ký tự
+                        </span>
+                    )}
                 </div>
                 <div className="mb-3">
                     <label htmlFor="" className="form-label">
@@ -57,9 +60,18 @@ const AddProduct = () => {
                         type="number"
                         className="form-control"
                         placeholder="$200"
-                        name="price"
-                        onInput={onHandleInput}
+                        {...register("price", { required: true, min: 0 })}
                     />
+                    {errors?.price?.type === "required" && (
+                        <span className="text-danger tw-mt-2 tw-block">
+                            Giá sản phẩm không được để trống
+                        </span>
+                    )}
+                    {errors?.price?.type === "min" && (
+                        <span className="text-danger tw-mt-2 tw-block">
+                            Giá sản phẩm không là số âm
+                        </span>
+                    )}
                 </div>
                 <div className="mb-3">
                     <label htmlFor="" className="form-label">
@@ -69,11 +81,10 @@ const AddProduct = () => {
                         <input
                             className="form-check-input"
                             type="radio"
-                            name="inStock"
                             value={true}
                             id="flexRadioDefault1"
                             defaultChecked
-                            onInput={onHandleInput}
+                            {...register("inStock")}
                         />
                         <label className="form-check-label" htmlFor="flexRadioDefault1">
                             Còn hàng
@@ -83,10 +94,9 @@ const AddProduct = () => {
                         <input
                             className="form-check-input"
                             type="radio"
-                            name="inStock"
                             value={false}
                             id="flexRadioDefault2"
-                            onInput={onHandleInput}
+                            {...register("inStock")}
                         />
                         <label className="form-check-label" htmlFor="flexRadioDefault2">
                             Hết hàng
@@ -97,22 +107,16 @@ const AddProduct = () => {
                     <label htmlFor="" className="form-label">
                         Ảnh sản phẩm
                     </label>
-                    <input
-                        type="text"
-                        className="form-control"
-                        name="imageUrl"
-                        onInput={onHandleInput}
-                    />
+                    <input type="text" className="form-control" {...register("imageUrl")} />
                 </div>
                 <div className="mb-3">
                     <label htmlFor="" className="form-label">
                         Mô tả sản phẩm
                     </label>
                     <textarea
-                        name="description"
                         className="form-control"
                         rows={4}
-                        onInput={onHandleInput}
+                        {...register("description")}
                     ></textarea>
                 </div>
                 <div className="mb-3">

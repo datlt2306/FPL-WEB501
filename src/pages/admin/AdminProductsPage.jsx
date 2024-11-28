@@ -1,15 +1,16 @@
+import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 const AdminProductsPage = () => {
-    // console.log(1)
     const [products, setProducts] = useState([]);
-    // setTimeOut(() => { console.log(2)})
     useEffect(() => {
         // call api để lấy dữ liệu
-        fetch(`http://localhost:3000/products`)
-            .then((response) => response.json())
-            .then((data) => setProducts(data));
+        const fetchProducts = async () => {
+            const { data } = await axios.get(`http://localhost:3000/products`);
+            setProducts(data);
+        };
+        fetchProducts();
     }, []);
 
     const removeProduct = (id) => {
@@ -20,7 +21,6 @@ const AdminProductsPage = () => {
             setProducts(products.filter((item) => item.id !== id));
         });
     };
-    // console.log(3)
     return (
         <div>
             <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">

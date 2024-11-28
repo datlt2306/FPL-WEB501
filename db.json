@@ -42,6 +42,14 @@
       "inStock": "false",
       "description": "231",
       "id": 11
+    },
+    {
+      "name": "Sản phẩm 11",
+      "price": "1100",
+      "inStock": "false",
+      "imageUrl": "Ảnh",
+      "description": "Mô tả",
+      "id": 12
     }
   ]
 }

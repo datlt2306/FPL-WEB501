@@ -33,3 +33,12 @@ export default App;
 // B5: truy cập api http://localhost:3000/products
 
 // /admin - redirect -> /admin/dashboard
+
+/**============== Buổi 14 ================ */
+/**
+ * 1. Sử dụng package: react-hook-form : npm i react-hook-form axios
+ * 2. sử dụng Axios để gửi request thay cho fetch()
+ * 3. Sử dụng async/await làm việc thay cho .then() và .catch()
+ * 4. Hoàn thiện cập nhật sản phẩm
+ * 5. Sử dụng json-server-auth để hoàn thiện chức năng đăng ký/Đăng nhập
+ */

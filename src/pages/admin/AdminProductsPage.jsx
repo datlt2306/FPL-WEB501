@@ -90,7 +90,9 @@ const AdminProductsPage = () => {
                                     >
                                         Xóa
                                     </button>
-                                    <button className="ms-1 btn btn-primary">Cập nhật</button>
+                                    <Link to={`/admin/products/${item.id}/edit`}>
+                                        <button className="ms-1 btn btn-primary">Cập nhật</button>
+                                    </Link>
                                 </td>
                             </tr>
                         );

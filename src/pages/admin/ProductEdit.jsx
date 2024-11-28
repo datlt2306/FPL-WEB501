@@ -1,42 +1,36 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 
-const ProductAdd = () => {
+const ProductEdit = () => {
+    const { id } = useParams();
     const {
         register,
         handleSubmit,
+        reset,
         formState: { errors },
     } = useForm();
     const navigate = useNavigate();
 
+    useEffect(() => {
+        const fetchProduct = async () => {
+            const { data } = await axios(`http://localhost:3000/products/${id}`);
+            reset(data);
+        };
+        fetchProduct();
+    }, [id]);
+
     const onSubmit = async (formData) => {
-        await axios.post(`http://localhost:3000/products`, formData);
-        alert("Thêm sản phẩm thành công");
+        await axios.put(`http://localhost:3000/products/${id}`, formData);
+        alert("Cập nhật sản phẩm thành công");
         navigate("/admin/products");
     };
-    // const [inputValue, setInputValue] = useState({});
-    // const onHandleChange = (e) => {
-    //     const { name, value } = e.target;
-    //     // spread operator + computed property name
-    //     setInputValue({ ...inputValue, [name]: value });
-    // };
-    // const onHandleSubmit = (e) => {
-    //     e.preventDefault();
-    //     if (!inputValue) return;
-    //     fetch(`http://localhost:3000/products`, {
-    //         method: "POST",
-    //         headers: {
-    //             "Content-Type": "application/json",
-    //         },
-    //         body: JSON.stringify(inputValue),
-    //     });
-    // };
+
     return (
         <div>
             <header className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                <h1 className="h2">Thêm sản phẩm</h1>
+                <h1 className="h2">Cập nhật sản phẩm</h1>
                 <div className="btn-toolbar mb-2 mb-md-0">
                     <div className="btn-group me-2">
                         <Link to="/admin/products">
@@ -138,7 +132,7 @@ const ProductAdd = () => {
                 </div>
                 <div className="mb-3">
                     <button className="btn btn-primary" type="submit">
-                        Thêm mới
+                        Cập nhật
                     </button>
                 </div>
             </form>
@@ -146,4 +140,12 @@ const ProductAdd = () => {
     );
 };
 
-export default ProductAdd;
+export default ProductEdit;
+
+/**
+ * B1: lấy được id trên url, sử dụng hook useParams()
+ * B2: Sau khi có id, gọi api để lấy thông tin sản phẩm theo id
+ * B3: Hiển thị thông tin sản phẩm lên form
+ * B4: Khi người dùng submit form, gọi api để cập nhật sản phẩm
+ * B5: Sau khi cập nhật thành công, chuyển hướng về trang quản lý sản phẩm
+ */

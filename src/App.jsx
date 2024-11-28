@@ -6,6 +6,9 @@ import ProductsPage from "./pages/ProductsPage";
 import DashboardPage from "./pages/admin/DashboardPage";
 import AdminProductsPage from "./pages/admin/AdminProductsPage";
 import ProductAdd from "./pages/admin/ProductAdd";
+import ProductEdit from "./pages/admin/ProductEdit";
+import Signup from "./pages/Signup";
+import Signin from "./pages/Signin";
 function App() {
     return (
         <>
@@ -13,12 +16,15 @@ function App() {
                 <Route path="/" element={<LayoutWebsite />}>
                     <Route index element={<HomePage />} />
                     <Route path="products" element={<ProductsPage />} />
+                    <Route path="signup" element={<Signup />} />
+                    <Route path="signin" element={<Signin />} />
                 </Route>
                 <Route path="admin" element={<LayoutAdmin />}>
                     <Route index element={<Navigate to="dashboard" />} />
                     <Route path="dashboard" element={<DashboardPage />} />
                     <Route path="products" element={<AdminProductsPage />} />
                     <Route path="products/add" element={<ProductAdd />} />
+                    <Route path="products/:id/edit" element={<ProductEdit />} />
                 </Route>
             </Routes>
         </>
@@ -45,4 +51,21 @@ export default App;
  * DELETE http://localhost:3000/products/${id} => xóa sản phẩm theo id
  * POST http://localhost:3000/products, phải thêm object body => thêm sản phẩm
  * PUT | PATCH http://localhost:3000/products/${id}, phải thêm object body => cập nhật sản phẩm
+ */
+
+// // // // // // // Buổi 14
+
+/**
+ * 1. Sử dụng package: react-hook-form : npm i react-hook-form axios
+ * 2. sử dụng Axios để gửi request
+ * 3. Sử dụng async/await làm việc thay cho .then() và .catch()
+ * 4. Hoàn thiện cập nhật sản phẩm
+ * 5. Sử dụng json-server-auth để hoàn thiện chức năng đăng ký/Đăng nhập
+ */
+
+/**
+ * Đăng ký / Đăng nhập
+ * B1: npm i json-server-auth -D
+ * B2: sửa lại script server trong package.json: json-server-auth --watch db.json
+ * B3: truy cập file db.json, thêm collection mới: users: []
  */

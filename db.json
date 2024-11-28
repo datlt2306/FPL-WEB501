@@ -4,8 +4,8 @@
       "id": 6,
       "name": "Product 6",
       "imageUrl": "https://picsum.photos/id/6/300/300",
-      "price": 25.99,
-      "inStock": true
+      "price": "2599",
+      "inStock": "true"
     },
     {
       "id": 7,
@@ -52,6 +52,14 @@
       "inStock": "false",
       "imageUrl": "Mô tả sản phẩm",
       "id": 13
+    }
+  ],
+  "users": [
+    {
+      "email": "admin@gmail.com",
+      "password": "$2a$10$QHJQsmDvyJrM7uLr43gx.O0KxmDEQkhBK0.7dQZPUaXx58yX/7Uwq",
+      "username": "admin@gmail.com",
+      "id": 1
     }
   ]
 }

@@ -24,3 +24,10 @@ console.log(
         { id: 2, price: 200 },
     ])
 );
+
+/**
+ * Nhìn
+ * Hiểu
+ * Nhớ
+ * Code
+ */

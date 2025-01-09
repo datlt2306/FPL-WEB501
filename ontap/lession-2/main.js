@@ -30,23 +30,32 @@ const resultTotalFromZeroToHundred = 5050;
 
 // 2
 // [1,5,6,12,7,9,10,15,20,30,50,100]
-function findMax(numbers) {
+const findMax = (numbers) => {
     if (!Array.isArray(numbers)) return "Dữ liệu không đúng";
     return Math.max(...numbers);
-}
-function reverseString(name) {
-    // Đạt => ['Đ', 'ạ', 't] => ['t', 'ạ', 'Đ'] => 'tạĐ'
+};
+const reverseString = (name) => {
     if (typeof name !== "string") return "Dữ liệu không đúng";
     return name.split("").reverse().join("");
-}
-function filterEvenNumbers(numbers) {
+};
+const filterEvenNumbers = (numbers) => {
     if (!Array.isArray(numbers)) return "Dữ liệu không đúng";
-    return numbers.filter(function (number) {
+    return numbers.filter((number) => {
+        if (typeof number !== "number") return "Không tính toán được";
         return number % 2 === 0;
     });
-}
+};
 
-console.log(filterEvenNumbers([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]));
+// function name
+function sum(a, b) {
+    return a + b;
+}
+// expression function
+const sum1 = function (a, b) {
+    return a + b;
+};
+// arrow function
+const sum2 = (a, b) => a + b;
 
 // dùng chatgpt, đọc hiểu từng dòng
 // ( validate, processing, return)

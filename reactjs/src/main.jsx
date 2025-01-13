@@ -8,11 +8,23 @@ const myInfo = {
     isMarried: true,
 };
 
+function sum(a, b) {
+    return a + b;
+}
+function showInfo(user) {
+    return (
+        <div>
+            <h2>Họ và tên: {user.name}</h2>
+            <p>Tuổi: {user.age}</p>
+            <p>Tình trạng: {user.isMarried ? "Đã có gia đình" : "Chưa có"}</p>
+            <p>{sum(a, b)}</p>
+        </div>
+    );
+}
+
 // document.querySelector('#root').innerHTML = a + b;
 createRoot(document.getElementById("root")).render(
     <div>
-        <h2>Họ và tên: {myInfo.name}</h2>
-        <p>Tuổi: {myInfo.age}</p>
-        <p>Tình trạng: {myInfo.isMarried ? "Đã có gia đình" : "Chưa có"}</p>
+        <p>Hàm info: {showInfo(myInfo)}</p>
     </div>
 );

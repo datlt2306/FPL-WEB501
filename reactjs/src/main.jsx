@@ -1,24 +1,28 @@
+/* eslint-disable react/prop-types */
 import { createRoot } from "react-dom/client";
 import "bootstrap/dist/css/bootstrap.min.css";
 import App from "./App";
 
-function showName(user) {
-    console.log("user in function", user);
-    return user.name;
-}
+const profile = {
+    name: "Đạt",
+    age: 30,
+    address: "Hà Nội",
+    isMarried: true,
+};
 function ShowName(props) {
-    console.log("user in component", props);
-    return props.name;
+    return (
+        <>
+            <h2>{props.profile.name}</h2>
+            <p>{props.profile.age}</p>
+            <p>{props.profile.address}</p>
+            <p>{props.profile.isMarried ? "Lấy vợ rồi" : "Ế"}</p>
+        </>
+    );
 }
 
 createRoot(document.getElementById("root")).render(
     <div>
-        {showName({ name: "Đạt" })}
-        {showName({ name: "Kiên" })}
-        <hr />
-        <ShowName name="Đạt" />
-        <ShowName name="Kiên" />
-        <ShowName name="Dũng" />
+        <ShowName profile={profile} />
     </div>
 );
 

@@ -5,9 +5,10 @@ import LatestNews from "./components/LatestNews";
 import Footer from "./components/Footer";
 
 function App() {
+    const logoUrl = "./logo.svg";
     return (
         <>
-            <Header />
+            <Header logo={logoUrl} />
             <Banner />
             <LatestNews />
             <Footer />

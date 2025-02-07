@@ -21,20 +21,21 @@
 import { useState } from "react";
 
 function App() {
-    const [name, setName] = useState("Đạt");
-    const [age, setAge] = useState(20);
-    const [isMarried, setIsMarried] = useState(false);
-    const [person, setPerson] = useState({
-        name: "Đạt",
-        age: 20,
-        isMarried: false,
-    });
+    const [todos, setTodos] = useState([
+        { title: "Chơi liên quân", completed: true }, // todo
+        { title: "Học Reactjs", completed: false }, // todo
+        { title: "Đi chơi với bạn gái", completed: false }, // todo
+    ]);
     return (
-        <div>
-            {name} - {age} - {isMarried ? "Đã kết hôn" : "Chưa kết hôn"}
-            <p>
-                {person.name} - {person.age} - {person.isMarried ? "Đã kết hôn" : "Chưa kết hôn"}
-            </p>
+        <div className="container">
+            <div className="row">
+                {todos.map((todo) => (
+                    <div className="col" key={todo.title}>
+                        <h2>{todo.title}</h2>
+                        <p>{todo.completed ? "Hoàn thành" : "Chưa hoàn thành"}</p>
+                    </div>
+                ))}
+            </div>
         </div>
     );
 }

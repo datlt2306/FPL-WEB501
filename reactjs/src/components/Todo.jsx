@@ -7,6 +7,13 @@ function TodoList() {
         { id: 3, title: "Chơi liên quân", completed: true }, // todo
         { id: 4, title: "Chơi LOL", completed: true }, // todo
     ]);
+
+    const removeTodo = (id) => {
+        const confirm = window.confirm("Bạn có chắc chắn muốn xóa không?");
+        if (!confirm) return;
+        setTodos(todos.filter((todo) => todo.id !== id));
+    };
+
     return (
         <div className="min-h-screen bg-gradient-to-br from-purple-100 to-indigo-100 py-12 px-4">
             <div className="max-w-2xl mx-auto">
@@ -32,41 +39,43 @@ function TodoList() {
                         </div>
                     </form>
 
-                    <div className="space-y-3">
-                        {todos.map((todo) => (
-                            <div
-                                key={todo.id}
-                                className="flex items-center gap-3 p-4 bg-gray-50 rounded-lg group hover:bg-gray-100 transition-colors"
-                            >
-                                {todo.completed ? (
-                                    <button className="text-gray-400 hover:text-purple-600 transition-colors">
-                                        <CheckCircle className="text-purple-600" size={24} />
-                                    </button>
-                                ) : (
-                                    <button className="text-gray-400 hover:text-purple-600 transition-colors">
-                                        <Circle size={24} />
-                                    </button>
-                                )}
-
-                                <span
-                                    className={`"flex-1 text-lg" ${
-                                        todo.completed
-                                            ? "line-through text-gray-400"
-                                            : " text-gray-700"
-                                    }`}
+                    {todos.length > 0 ? (
+                        <div className="space-y-3">
+                            {todos.map((todo) => (
+                                <div
+                                    key={todo.id}
+                                    className="flex items-center gap-3 p-4 bg-gray-50 rounded-lg group hover:bg-gray-100 transition-colors"
                                 >
-                                    {todo.title}
-                                </span>
-                                <button className="text-gray-400 hover:text-red-600 opacity-0 group-hover:opacity-100! transition-all">
-                                    <Trash2 size={20} />
-                                </button>
-                            </div>
-                        ))}
-                    </div>
+                                    {todo.completed ? (
+                                        <button className="text-gray-400 hover:text-purple-600 transition-colors">
+                                            <CheckCircle className="text-purple-600" size={24} />
+                                        </button>
+                                    ) : (
+                                        <button className="text-gray-400 hover:text-purple-600 transition-colors">
+                                            <Circle size={24} />
+                                        </button>
+                                    )}
 
-                    <div className="text-center text-gray-500 mt-8">
-                        <p>No tasks yet. Add one to get started!</p>
-                    </div>
+                                    <span
+                                        className={`"flex-1 text-lg" ${
+                                            todo.completed
+                                                ? "line-through text-gray-400"
+                                                : " text-gray-700"
+                                        }`}
+                                    >
+                                        {todo.title}
+                                    </span>
+                                    <button className="text-gray-400 hover:text-red-600 opacity-0 group-hover:opacity-100! transition-all">
+                                        <Trash2 size={20} onClick={() => removeTodo(todo.id)} />
+                                    </button>
+                                </div>
+                            ))}
+                        </div>
+                    ) : (
+                        <div className="text-center text-gray-500 mt-8">
+                            <p>No tasks yet. Add one to get started!</p>
+                        </div>
+                    )}
                 </div>
             </div>
         </div>

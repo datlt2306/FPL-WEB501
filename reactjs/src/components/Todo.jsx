@@ -7,7 +7,11 @@ function TodoList() {
         { id: 3, title: "Chơi liên quân", completed: true }, // todo
         { id: 4, title: "Chơi LOL", completed: true }, // todo
     ]);
-
+    const toggleTodo = (id) => {
+        setTodos(
+            todos.map((todo) => (todo.id == id ? { ...todo, completed: !todo.completed } : todo))
+        );
+    };
     const removeTodo = (id) => {
         const confirm = window.confirm("Bạn có chắc chắn muốn xóa không?");
         if (!confirm) return;
@@ -47,11 +51,17 @@ function TodoList() {
                                     className="flex items-center gap-3 p-4 bg-gray-50 rounded-lg group hover:bg-gray-100 transition-colors"
                                 >
                                     {todo.completed ? (
-                                        <button className="text-gray-400 hover:text-purple-600 transition-colors">
+                                        <button
+                                            className="text-gray-400 hover:text-purple-600 transition-colors"
+                                            onClick={() => toggleTodo(todo.id)}
+                                        >
                                             <CheckCircle className="text-purple-600" size={24} />
                                         </button>
                                     ) : (
-                                        <button className="text-gray-400 hover:text-purple-600 transition-colors">
+                                        <button
+                                            className="text-gray-400 hover:text-purple-600 transition-colors"
+                                            onClick={() => toggleTodo(todo.id)}
+                                        >
                                             <Circle size={24} />
                                         </button>
                                     )}
@@ -90,3 +100,19 @@ export default TodoList;
  * 3. Làm việc với form
  * 4. Xử lý sự kiện
  */
+
+// id: 4
+
+// mảng cũ
+// { id: 1, title: "Học React", completed: false }, // todo
+// { id: 2, title: "Học Angular", completed: false }, // todo
+// { id: 3, title: "Chơi liên quân", completed: true }, // todo
+// { id: 4, title: "Chơi LOL", completed: true }, // todo
+
+// mảng mới
+// { id: 1, title: "Học React", completed: false }, // todo
+// { id: 2, title: "Học Angular", completed: false }, // todo
+// { id: 3, title: "Chơi liên quân", completed: true }, // todo
+// { id: 4, title: "Chơi LOL", completed: false }, // todo
+
+// todos.map((todo) => (todo.id == id ? { ...todo, completed: !todo.completed } : todo))

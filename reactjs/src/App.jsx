@@ -17,25 +17,11 @@
 // }
 
 // export default App;
-
-import { useState } from "react";
-
+import TodoList from "./components/Todo";
 function App() {
-    const [todos, setTodos] = useState([
-        { title: "Chơi liên quân", completed: true }, // todo
-        { title: "Học Reactjs", completed: false }, // todo
-        { title: "Đi chơi với bạn gái", completed: false }, // todo
-    ]);
     return (
-        <div className="container">
-            <div className="row">
-                {todos.map((todo) => (
-                    <div className="col" key={todo.title}>
-                        <h2>{todo.title}</h2>
-                        <p>{todo.completed ? "Hoàn thành" : "Chưa hoàn thành"}</p>
-                    </div>
-                ))}
-            </div>
+        <div>
+            <TodoList />
         </div>
     );
 }

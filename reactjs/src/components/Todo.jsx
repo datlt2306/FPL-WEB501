@@ -1,6 +1,7 @@
 import { PlusCircle, Trash2, CheckCircle, Circle } from "lucide-react";
 import { useState } from "react";
 function TodoList() {
+    const [inputValue, setInputValue] = useState("");
     const [todos, setTodos] = useState([
         { id: 1, title: "Học React", completed: false }, // todo
         { id: 2, title: "Học Angular", completed: false }, // todo
@@ -18,6 +19,14 @@ function TodoList() {
         setTodos(todos.filter((todo) => todo.id !== id));
     };
 
+    const onSubmit = (e) => {
+        e.preventDefault();
+        if (!inputValue) return;
+        // chặn sự kiện reload trang
+        setTodos([...todos, { id: todos.length + 1, title: inputValue, completed: false }]);
+        setInputValue("");
+    };
+
     return (
         <div className="min-h-screen bg-gradient-to-br from-purple-100 to-indigo-100 py-12 px-4">
             <div className="max-w-2xl mx-auto">
@@ -25,13 +34,14 @@ function TodoList() {
                     <h1 className="text-3xl font-bold text-gray-800 mb-8 text-center">
                         What&apos;s on your mind?
                     </h1>
-
-                    <form className="mb-8">
+                    <form className="mb-8" onSubmit={onSubmit}>
                         <div className="flex gap-2">
                             <input
                                 type="text"
                                 placeholder="Add a new task..."
                                 className="flex-1 px-4 py-3 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition"
+                                value={inputValue}
+                                onInput={(e) => setInputValue(e.target.value)}
                             />
                             <button
                                 type="submit"

@@ -1,8 +1,16 @@
 import { PlusCircle, Trash2, CheckCircle, Circle } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 function TodoList() {
     const [inputValue, setInputValue] = useState("");
     const [todos, setTodos] = useState([]);
+
+    useEffect(() => {
+        // side effect
+        fetch(`http://localhost:3000/todos`)
+            .then((response) => response.json())
+            .then((data) => setTodos(data));
+    }, []);
+
     const toggleTodo = (id) => {
         setTodos(
             todos.map((todo) => (todo.id == id ? { ...todo, completed: !todo.completed } : todo))
@@ -11,6 +19,12 @@ function TodoList() {
     const removeTodo = (id) => {
         const confirm = window.confirm("Bạn có chắc chắn muốn xóa không?");
         if (!confirm) return;
+
+        // call api
+        fetch(`http://localhost:3000/todos/${id}`, {
+            method: "DELETE",
+        });
+        // rerender
         setTodos(todos.filter((todo) => todo.id !== id));
     };
 
@@ -18,7 +32,17 @@ function TodoList() {
         e.preventDefault();
         if (!inputValue) return;
         // chặn sự kiện reload trang
-        setTodos([...todos, { id: todos.length + 1, title: inputValue, completed: false }]);
+        const newTodo = { id: todos.length + 1, title: inputValue, completed: false };
+        // call api
+        fetch(`http://localhost:3000/todos`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(newTodo),
+        });
+        // rereder
+        setTodos([...todos, newTodo]);
         setInputValue("");
     };
 

@@ -1,0 +1,11 @@
+{
+    "posts": [{ "id": 1, "title": "json-server", "author": "typicode" }],
+    "comments": [{ "id": 1, "body": "some comment", "postId": 1 }],
+    "profile": { "name": "typicode" },
+    "todos": [
+        { "id": 1, "title": "Học React", "completed": false },
+        { "id": 2, "title": "Học Angular", "completed": false },
+        { "id": 3, "title": "Chơi liên quân", "completed": true },
+        { "id": 4, "title": "Chơi LOL", "completed": true }
+    ]
+}

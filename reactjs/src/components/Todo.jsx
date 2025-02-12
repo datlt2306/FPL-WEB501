@@ -2,12 +2,7 @@ import { PlusCircle, Trash2, CheckCircle, Circle } from "lucide-react";
 import { useState } from "react";
 function TodoList() {
     const [inputValue, setInputValue] = useState("");
-    const [todos, setTodos] = useState([
-        { id: 1, title: "Học React", completed: false }, // todo
-        { id: 2, title: "Học Angular", completed: false }, // todo
-        { id: 3, title: "Chơi liên quân", completed: true }, // todo
-        { id: 4, title: "Chơi LOL", completed: true }, // todo
-    ]);
+    const [todos, setTodos] = useState([]);
     const toggleTodo = (id) => {
         setTodos(
             todos.map((todo) => (todo.id == id ? { ...todo, completed: !todo.completed } : todo))

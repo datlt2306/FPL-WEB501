@@ -1,0 +1,98 @@
+{
+  "posts": [
+    {
+      "id": 17,
+      "title": "Qui dicta consequatur.",
+      "slug": "qui-perferendis-pariatur",
+      "content": "Id aliquid non rerum voluptas earum laudantium laudantium. Esse ex ducimus quos ullam harum. Voluptas sit corporis dolorem quos at aut suscipit quod. Rerum alias dolor alias dolorem et a quasi. Nemo laborum doloribus dicta autem repellendus impedit. Inventore aperiam magnam. Odio saepe asperiores dolor quia dolore enim voluptatem. Repellat enim qui autem mollitia dolorum rerum amet ratione. Ut exercitationem corporis hic beatae nulla odit deleniti nemo ducimus. Non inventore magnam labore tempora aut.",
+      "hit": 209364,
+      "category": {
+        "id": 6
+      },
+      "user": {
+        "id": 42
+      },
+      "status": "published",
+      "status_color": "lime",
+      "createdAt": "2023-10-08T17:50:59.804Z",
+      "publishedAt": "2023-12-09T00:05:31.755Z",
+      "images": [
+        {
+          "url": "http://loremflickr.com/640/480/abstract",
+          "name": "d1cf7a85-74d9-4145-90a0-2c87966ca2ba",
+          "status": "done",
+          "type": "image/jpeg",
+          "uid": "5a1e1a80-af7b-48bb-aaa5-8dbf11180cda"
+        }
+      ],
+      "tags": [
+        7,
+        10
+      ],
+      "language": 3
+    },
+    {
+      "id": 18,
+      "title": "Quidem amet consequatur temporibus atque placeat omnis nam quo libero.",
+      "slug": "unde-aut-eius",
+      "content": "Minima enim sed neque velit iste voluptates a. Fugiat deserunt nam doloribus adipisci nihil eligendi vero. Ipsum sed aut commodi dolor accusantium ipsa expedita cupiditate est. Aspernatur consequuntur pariatur recusandae dolorem asperiores minima. Quis iste quis deserunt est eum. Delectus minus quibusdam impedit quasi et. Autem dolorem omnis quasi maxime. Est distinctio quam nobis rem. Odit dolores quaerat consequatur perferendis quis. Repudiandae omnis molestiae facere qui libero ut quasi doloremque dolor.",
+      "hit": 4027,
+      "category": {
+        "id": 3
+      },
+      "user": {
+        "id": 44
+      },
+      "status": "draft",
+      "status_color": "orange",
+      "createdAt": "2024-03-12T05:58:24.121Z",
+      "publishedAt": "2023-07-29T02:50:16.684Z",
+      "images": [
+        {
+          "url": "http://loremflickr.com/640/480/abstract",
+          "name": "f8858d0e-734c-46dc-b820-92bb78a18a57",
+          "status": "done",
+          "type": "image/jpeg",
+          "uid": "7920fd6c-0c13-4bcc-9caa-9e19dff5ef17"
+        }
+      ],
+      "tags": [
+        7,
+        10,
+        1
+      ],
+      "language": 1
+    },
+    {
+      "id": 19,
+      "title": "Ipsa sunt repudiandae delectus velit sunt ab.",
+      "slug": "provident-quod-voluptatem",
+      "content": "Ipsam eum in ut et voluptas sequi minus deleniti dolorum. Assumenda hic magnam sed omnis. Similique quis in. Odio fugiat necessitatibus quasi perspiciatis sit voluptates ducimus voluptatibus. Blanditiis ut sint delectus aliquid voluptatem error. Sint et fugiat voluptatum et deleniti inventore quae. Facere totam voluptatibus alias suscipit eum. Recusandae ab quidem architecto nemo sit voluptatem veniam. Perspiciatis sit veniam natus autem. Odit eaque culpa harum maiores.",
+      "hit": 615120,
+      "category": {
+        "id": 14
+      },
+      "user": {
+        "id": 9
+      },
+      "status": "rejected",
+      "status_color": "red",
+      "createdAt": "2023-06-24T05:48:02.508Z",
+      "publishedAt": "2023-07-30T02:31:50.339Z",
+      "images": [
+        {
+          "url": "http://loremflickr.com/640/480/abstract",
+          "name": "c563078b-bd26-4684-9d97-b606b003c12f",
+          "status": "done",
+          "type": "image/jpeg",
+          "uid": "fd9ed465-e6a7-41e4-98c1-f74d1b6959d7"
+        }
+      ],
+      "tags": [
+        5
+      ],
+      "language": 3
+    }
+  ],
+  "users": []
+}

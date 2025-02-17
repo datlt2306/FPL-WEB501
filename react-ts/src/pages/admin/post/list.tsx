@@ -105,7 +105,7 @@ const ListPostPage = () => {
                                 <td>
                                     <div className="d-flex gap-2">
                                         <button
-                                            onClick={() => onHandleRemove(post.id)}
+                                            onClick={() => onHandleRemove(post.id!)}
                                             className="btn btn-danger btn-sm"
                                         >
                                             Xóa

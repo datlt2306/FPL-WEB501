@@ -2,7 +2,7 @@
   "posts": [
     {
       "id": 17,
-      "title": "Qui dicta consequatur.",
+      "title": "Qui dicta consequatur. update",
       "slug": "qui-perferendis-pariatur",
       "content": "Id aliquid non rerum voluptas earum laudantium laudantium. Esse ex ducimus quos ullam harum. Voluptas sit corporis dolorem quos at aut suscipit quod. Rerum alias dolor alias dolorem et a quasi. Nemo laborum doloribus dicta autem repellendus impedit. Inventore aperiam magnam. Odio saepe asperiores dolor quia dolore enim voluptatem. Repellat enim qui autem mollitia dolorum rerum amet ratione. Ut exercitationem corporis hic beatae nulla odit deleniti nemo ducimus. Non inventore magnam labore tempora aut.",
       "hit": 209364,
@@ -92,7 +92,30 @@
         5
       ],
       "language": 3
+    },
+    {
+      "title": "Bài viết 100",
+      "content": "Nội dung",
+      "id": 20
+    },
+    {
+      "title": "1232121321",
+      "content": "21312313231",
+      "slug": "1232121321",
+      "id": 21
+    },
+    {
+      "title": "1232131321",
+      "content": "3213123",
+      "slug": "1232131321",
+      "id": 22
     }
   ],
-  "users": []
+  "users": [
+    {
+      "email": "admin@gmail.com",
+      "password": "$2a$10$ZBqfVnuNcqxwRkkp.6fVt.g0wZg7mGaBSm6FcdN.w0sle8dnUOHwe",
+      "id": 1
+    }
+  ]
 }

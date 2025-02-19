@@ -4,6 +4,8 @@ import DashboardPage from "./pages/admin/Dashboard";
 import ListPostPage from "./pages/admin/post/list";
 import CreatePostPage from "./pages/admin/post/create";
 import EditPostPage from "./pages/admin/post/edit";
+import SignupPage from "./pages/Signup";
+import SigninPage from "./pages/Signin";
 
 function App() {
     return (
@@ -15,6 +17,8 @@ function App() {
                     <Route path="posts/create" element={<CreatePostPage />} />
                     <Route path="posts/:id/edit" element={<EditPostPage />} />
                 </Route>
+                <Route path="signup" element={<SignupPage />} />
+                <Route path="signin" element={<SigninPage />} />
             </Routes>
         </>
     );

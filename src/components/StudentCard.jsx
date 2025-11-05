@@ -1,15 +1,11 @@
-const StudentCard = () => {
-    const name = "Nhập tên của bạn";
-    const dob = "dd/mm/yyyy";
-    const hometown = "Nhập quê quán";
-    const hobby = "Nhập sở thích";
-
+const StudentCard = ({ age }) => {
+    console.log(age); // undefined
     return (
         <div className="student-card">
-            <h2>{name}</h2>
-            <p>Ngày sinh: {dob}</p>
-            <p>Quê quán: {hometown}</p>
-            <p>Sở thích: {hobby}</p>
+            {/* <h2>{props.user.name}</h2>
+            <p>Ngày sinh: {props.user.dob}</p>
+            <p>Quê quán: {props.user.hometown}</p>
+            <p>Sở thích: {props.user.hobby}</p> */}
         </div>
     );
 };

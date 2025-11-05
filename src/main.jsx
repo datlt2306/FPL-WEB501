@@ -1,31 +1,38 @@
 import { createRoot } from "react-dom/client";
 
-function User() {
+function StudentCard() {
+    const name = "Nhập tên của bạn";
+    const dob = "dd/mm/yyyy";
+    const hometown = "Nhập quê quán";
+    const hobby = "Nhập sở thích";
+
     return (
-        <div>
-            <h2>User Component</h2>
-        </div>
-    );
-}
-function Profile() {
-    const user = {
-        name: "Dat",
-        age: 20,
-        status: true,
-    };
-    const fullName = "Lê Trọng Đat";
-    return (
-        <div>
-            <h1>Hello {fullName}</h1>
-            <p>Tuổi {user.age + 10}</p>
-            <p>Tình trạng: {user.status ? "Đã kết hôn" : "Ế"}</p>
+        <div className="student-card">
+            <h2>{name}</h2>
+            <p>Ngày sinh: {dob}</p>
+            <p>Quê quán: {hometown}</p>
+            <p>Sở thích: {hobby}</p>
         </div>
     );
 }
 
+function StudentList() {
+    const students = ["Nguyễn Văn A", "Trần Thị B", "Lê Văn C"];
+
+    return (
+        <div className="student-list">
+            <h2>Danh sách sinh viên</h2>
+            <ul>
+                <li>{students[0]}</li>
+                <li>{students[1]}</li>
+                <li>{students[2]}</li>
+            </ul>
+        </div>
+    );
+}
 createRoot(document.getElementById("root")).render(
     <div>
-        <Profile />
-        <User />
+        <StudentCard />
+        <StudentList />
     </div>
 );

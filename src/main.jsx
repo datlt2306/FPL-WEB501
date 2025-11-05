@@ -1,10 +1,31 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import './index.css'
-import App from './App.jsx'
+import { createRoot } from "react-dom/client";
 
-createRoot(document.getElementById('root')).render(
-  <StrictMode>
-    <App />
-  </StrictMode>,
-)
+function User() {
+    return (
+        <div>
+            <h2>User Component</h2>
+        </div>
+    );
+}
+function Profile() {
+    const user = {
+        name: "Dat",
+        age: 20,
+        status: true,
+    };
+    const fullName = "Lê Trọng Đat";
+    return (
+        <div>
+            <h1>Hello {fullName}</h1>
+            <p>Tuổi {user.age + 10}</p>
+            <p>Tình trạng: {user.status ? "Đã kết hôn" : "Ế"}</p>
+        </div>
+    );
+}
+
+createRoot(document.getElementById("root")).render(
+    <div>
+        <Profile />
+        <User />
+    </div>
+);

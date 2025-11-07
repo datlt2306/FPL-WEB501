@@ -1,10 +1,8 @@
 import React from "react";
 
-const Button = ({ text = "click me!", color = "blue" }) => {
+const Button = ({ children, text = "Primary", variant = "primary", size = "medium" }) => {
     return (
-        <div>
-            <button style={{ backgroundColor: color }}>{text}</button>
-        </div>
+        <button className={`btn btn-${variant} btn-${size}`}>{children ? children : text}</button>
     );
 };
 

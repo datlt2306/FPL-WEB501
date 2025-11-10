@@ -5,6 +5,7 @@ import "./App.css";
 import RegisterForm from "./components/RegisterForm";
 import { useState } from "react";
 import Counter from "./components/Counter";
+import TodoList from "./components/TodoList";
 function App() {
     const [users, setUser] = useState([
         { name: "Nguyễn Văn A", role: "Sinh viên", email: "a@example.com" },
@@ -51,6 +52,9 @@ function App() {
             <hr />
             <h2>Counter Component</h2>
             <Counter />
+            <hr />
+            <h2>TodoList Component</h2>
+            <TodoList />
         </div>
     );
 }

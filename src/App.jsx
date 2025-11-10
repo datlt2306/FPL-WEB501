@@ -2,13 +2,16 @@ import Button from "./components/Button";
 import LessonCard from "./components/LessonCard";
 import UserCard from "./components/UserCard";
 import "./App.css";
+import RegisterForm from "./components/RegisterForm";
+import { useState } from "react";
+import Counter from "./components/Counter";
 function App() {
-    const users = [
+    const [users, setUser] = useState([
         { name: "Nguyễn Văn A", role: "Sinh viên", email: "a@example.com" },
         { name: "Trần Thị B", role: "Giảng viên", email: "b@example.com" },
         { name: "Lê Văn C", role: "Admin", email: "c@example.com" },
-    ];
-    const lessons = [
+    ]);
+    const [lessons, setLessons] = useState([
         {
             title: "React là gì?",
             duration: "30 phút",
@@ -21,7 +24,7 @@ function App() {
             difficulty: "Khó",
             content: "Tìm hiểu useState, useEffect và custom hooks",
         },
-    ];
+    ]);
     return (
         <div>
             <h2>User Card</h2>
@@ -42,6 +45,12 @@ function App() {
             <Button variant="success" size="small">
                 Lưu
             </Button>
+            <hr />
+            <h2>Register Form Component</h2>
+            <RegisterForm />
+            <hr />
+            <h2>Counter Component</h2>
+            <Counter />
         </div>
     );
 }

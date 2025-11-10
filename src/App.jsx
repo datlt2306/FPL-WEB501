@@ -7,12 +7,12 @@ import { useState } from "react";
 import Counter from "./components/Counter";
 import TodoList from "./components/TodoList";
 function App() {
-    const [users, setUser] = useState([
+    const [users] = useState([
         { name: "Nguyễn Văn A", role: "Sinh viên", email: "a@example.com" },
         { name: "Trần Thị B", role: "Giảng viên", email: "b@example.com" },
         { name: "Lê Văn C", role: "Admin", email: "c@example.com" },
     ]);
-    const [lessons, setLessons] = useState([
+    const [lessons] = useState([
         {
             title: "React là gì?",
             duration: "30 phút",
@@ -28,7 +28,7 @@ function App() {
     ]);
     return (
         <div>
-            <h2>User Card</h2>
+            {/* <h2>User Card</h2>
             <UserCard user={users[0]} />
             <UserCard user={users[1]} />
             <UserCard user={users[2]} />
@@ -52,8 +52,7 @@ function App() {
             <hr />
             <h2>Counter Component</h2>
             <Counter />
-            <hr />
-            <h2>TodoList Component</h2>
+            <hr /> */}
             <TodoList />
         </div>
     );

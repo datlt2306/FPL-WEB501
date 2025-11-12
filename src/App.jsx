@@ -7,25 +7,30 @@ import { useState } from "react";
 import Counter from "./components/Counter";
 import TodoList from "./components/TodoList";
 function App() {
-    const [users] = useState([
-        { name: "Nguyễn Văn A", role: "Sinh viên", email: "a@example.com" },
-        { name: "Trần Thị B", role: "Giảng viên", email: "b@example.com" },
-        { name: "Lê Văn C", role: "Admin", email: "c@example.com" },
+    const [todos] = useState([
+        { id: 1, text: "Học React", completed: false }, // todo
+        { id: 2, text: "Làm bài tập", completed: true }, // todo
+        { id: 3, text: "Review code", completed: false }, // todo
     ]);
-    const [lessons] = useState([
-        {
-            title: "React là gì?",
-            duration: "30 phút",
-            difficulty: "Dễ",
-            content: "Giới thiệu về React và cách hoạt động",
-        },
-        {
-            title: "Hooks trong React",
-            duration: "60 phút",
-            difficulty: "Khó",
-            content: "Tìm hiểu useState, useEffect và custom hooks",
-        },
-    ]);
+    // const [users] = useState([
+    //     { name: "Nguyễn Văn A", role: "Sinh viên", email: "a@example.com" },
+    //     { name: "Trần Thị B", role: "Giảng viên", email: "b@example.com" },
+    //     { name: "Lê Văn C", role: "Admin", email: "c@example.com" },
+    // ]);
+    // const [lessons] = useState([
+    //     {
+    //         title: "React là gì?",
+    //         duration: "30 phút",
+    //         difficulty: "Dễ",
+    //         content: "Giới thiệu về React và cách hoạt động",
+    //     },
+    //     {
+    //         title: "Hooks trong React",
+    //         duration: "60 phút",
+    //         difficulty: "Khó",
+    //         content: "Tìm hiểu useState, useEffect và custom hooks",
+    //     },
+    // ]);
     return (
         <div>
             {/* <h2>User Card</h2>
@@ -53,7 +58,12 @@ function App() {
             <h2>Counter Component</h2>
             <Counter />
             <hr /> */}
-            <TodoList />
+            <TodoList todos={todos} />
+            {/* const ulElement = documenet.getelementByid('ul');
+
+            const newData = data.map((item) => {
+                return `<li>${item.text}</li>`
+            }).join('') */}
         </div>
     );
 }

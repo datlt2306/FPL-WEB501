@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-const DemoUseEffect = () => {
+const ProductList = () => {
     // set state products
     const [products, setProducts] = useState([]);
     useEffect(() => {
@@ -32,15 +32,20 @@ const DemoUseEffect = () => {
     };
     return (
         <div>
-            {products.map((item) => (
-                <div>
-                    <h2>{item.name}</h2>
-                    <span>{item.price}</span>
-                    <button onClick={() => handleDelete(item.id)}>Delete</button>
-                </div>
-            ))}
+            {products.length > 0 ? (
+                products.map((item) => (
+                    <div>
+                        <img src={item.image} alt={item.name} />
+                        <h2>{item.name}</h2>
+                        <span>{item.price}</span>
+                        <button onClick={() => handleDelete(item.id)}>Delete</button>
+                    </div>
+                ))
+            ) : (
+                <div>Không có sản phẩm</div>
+            )}
         </div>
     );
 };
 
-export default DemoUseEffect;
+export default ProductList;

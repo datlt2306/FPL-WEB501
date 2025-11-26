@@ -1,15 +1,18 @@
 import { Link, Route, Routes } from "react-router-dom";
 import "./App.css";
-import DemoUseEffect from "./components/DemoUseEffect";
+import DemoUseEffect from "./components/ProductList";
+import ProductList from "./components/ProductList";
 
 function App() {
     return (
         <div>
             <Link to="/">Trang chủ</Link>
             <Link to="/about">Trang giới thiệu</Link>
+
             <Routes>
-                <Route path="/" element={<h1>Trang chủ</h1>} />
-                <Route path="about" element={<h1>Trang giới thiệu</h1>} />
+                <Route path="admin">
+                    <Route path="products" element={<ProductList />} />
+                </Route>
             </Routes>
         </div>
     );

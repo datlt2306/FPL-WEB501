@@ -1,7 +1,8 @@
 import { Link, Route, Routes } from "react-router-dom";
 import "./App.css";
-import DemoUseEffect from "./components/ProductList";
 import ProductList from "./components/ProductList";
+import ProductAdd from "./components/ProductAdd";
+import ProductEdit from "./components/ProductEdit";
 
 function App() {
     return (
@@ -12,6 +13,8 @@ function App() {
             <Routes>
                 <Route path="admin">
                     <Route path="products" element={<ProductList />} />
+                    <Route path="products/add" element={<ProductAdd />} />
+                    <Route path="products/:id/edit" element={<ProductEdit />} />
                 </Route>
             </Routes>
         </div>
@@ -20,5 +23,6 @@ function App() {
 // npm i  react-router-dom
 // gắn component <BrowserRouter /> ở main.jsx
 // code
+// const id = new URLSearchParams(window.location.search).get("id");
 
 export default App;

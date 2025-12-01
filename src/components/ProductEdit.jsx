@@ -17,7 +17,12 @@ const ProductEdit = () => {
         const fetchProduct = async () => {
             const response = await fetch(`http://localhost:3000/products/${id}`);
             const data = await response.json();
-            console.log(data);
+            setValueInput({
+                name: data.name || "",
+                price: data.price || 0,
+                image: data.image || "",
+                instock: data.instock || 0,
+            });
         };
         fetchProduct();
     }, []);
@@ -44,23 +49,23 @@ const ProductEdit = () => {
             return;
         }
         // call API
-        const response = await fetch(`http://localhost:3000/products`, {
-            method: "POST",
+        const response = await fetch(`http://localhost:3000/products/${id}`, {
+            method: "PUT",
             headers: {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify(valueInput),
         });
         if (!response.ok) {
-            throw new Error("Thêm thất bại!");
+            throw new Error("Cập nhật thất bại!");
         }
-        alert("Thêm sản phẩm thành công!");
+        alert("Cập nhật sản phẩm thành công!");
         navigate("/");
     };
     return (
         <div>
             <div className="d-flex justify-content-between align-items-center">
-                <h2>Thêm sản phẩm</h2>
+                <h2>Cập nhật sản phẩm</h2>
                 <Link to="/" className="btn btn-primary">
                     Quay lại
                 </Link>
@@ -73,6 +78,7 @@ const ProductEdit = () => {
                         className="form-control"
                         placeholder="Tên sản phẩm"
                         name="name"
+                        value={valueInput.name}
                         onInput={handleInput}
                     />
                 </div>
@@ -83,6 +89,7 @@ const ProductEdit = () => {
                         className="form-control"
                         placeholder="Giá sản phẩm"
                         name="price"
+                        value={valueInput.price}
                         onInput={handleInput}
                     />
                 </div>
@@ -93,6 +100,7 @@ const ProductEdit = () => {
                         className="form-control"
                         placeholder="Ảnh sản phẩm"
                         name="image"
+                        value={valueInput.image}
                         onInput={handleInput}
                     />
                 </div>
@@ -103,20 +111,16 @@ const ProductEdit = () => {
                         className="form-control"
                         placeholder="Số lượng sản phẩm"
                         name="instock"
+                        value={valueInput.instock}
                         onInput={handleInput}
                     />
                 </div>
                 <button type="submit" className="btn btn-primary">
-                    Thêm sản phẩm
+                    Cập nhật sản phẩm
                 </button>
             </form>
         </div>
     );
 };
 
-// Lấy id trên url để call API
-// fill vào form
-// Lấy được giá trị của form lưu vào state
-// submit thì gửi giá trị state lên server
-// nếu thành công thì redirect về trang list
 export default ProductEdit;

@@ -1,11 +1,11 @@
 {
   "products": [
     {
-      "id": 4,
-      "name": "Sản phẩm 4",
+      "name": "Sản phẩm 4 update",
       "price": 90000,
+      "image": "https://picsum.photos/id/240/200/300",
       "instock": 20,
-      "image": "https://picsum.photos/id/240/200/300"
+      "id": 4
     },
     {
       "id": 5,

@@ -65,6 +65,20 @@
       "image": "Ảnh sản phẩm",
       "instock": "50",
       "id": 13
+    },
+    {
+      "name": "Sản phẩm vừa thêm 1",
+      "price": "200",
+      "image": "ảnh",
+      "instock": "200",
+      "id": 14
+    },
+    {
+      "name": "Sản phẩm vừa thêm 2",
+      "price": "200",
+      "image": "030231",
+      "instock": "2132131",
+      "id": 15
     }
   ]
 }

@@ -27,7 +27,7 @@ const ProductList = () => {
         <div>
             <div className="d-flex justify-content-between align-items-center">
                 <h2>Quản lý sản phẩm</h2>
-                <Link to="/add" className="btn btn-primary">
+                <Link to="/admin/products/add" className="btn btn-primary">
                     Thêm sản phẩm
                 </Link>
             </div>

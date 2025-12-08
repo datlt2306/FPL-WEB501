@@ -1,45 +1,19 @@
+import axios from "axios";
 import React from "react";
-import { useState } from "react";
+import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 
 const ProductAdd = () => {
+    const {
+        register,
+        handleSubmit,
+        // formState: { errors },
+    } = useForm();
     const navigate = useNavigate();
-    const [valueInput, setValueInput] = useState({
-        name: "",
-        price: 0,
-        image: "",
-        instock: 0,
-    });
-    const handleInput = (e) => {
-        // lấy giá trị của form
-        const product = {
-            ...valueInput,
-            [e.target.name]: e.target.value,
-        };
-        // lưu vào state
-        setValueInput(product);
-    };
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        // validate form cơ bản
-        if (
-            valueInput.name === "" ||
-            valueInput.price === "" ||
-            valueInput.image === 0 ||
-            valueInput.instock === 0
-        ) {
-            alert("Vui lòng nhập đầy đủ thông tin");
-            return;
-        }
-        // call API
-        const response = await fetch(`http://localhost:3000/products`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(valueInput),
-        });
-        if (!response.ok) {
+
+    const onSubmit = async (data) => {
+        const response = await axios.post(`http://localhost:3000/products`, data);
+        if (response.status !== 201) {
             throw new Error("Thêm thất bại!");
         }
         alert("Thêm sản phẩm thành công!");
@@ -49,19 +23,18 @@ const ProductAdd = () => {
         <div>
             <div className="d-flex justify-content-between align-items-center">
                 <h2>Thêm sản phẩm</h2>
-                <Link to="/" className="btn btn-primary">
+                <Link to="/admin/products" className="btn btn-primary">
                     Quay lại
                 </Link>
             </div>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit(onSubmit)}>
                 <div className="form-group mb-3">
                     <label className="form-label">Tên sản phẩm</label>
                     <input
                         type="text"
                         className="form-control"
                         placeholder="Tên sản phẩm"
-                        name="name"
-                        onInput={handleInput}
+                        {...register("name")}
                     />
                 </div>
                 <div className="form-group mb-3">
@@ -70,8 +43,7 @@ const ProductAdd = () => {
                         type="text"
                         className="form-control"
                         placeholder="Giá sản phẩm"
-                        name="price"
-                        onInput={handleInput}
+                        {...register("price")}
                     />
                 </div>
                 <div className="form-group mb-3">
@@ -80,8 +52,7 @@ const ProductAdd = () => {
                         type="text"
                         className="form-control"
                         placeholder="Ảnh sản phẩm"
-                        name="image"
-                        onInput={handleInput}
+                        {...register("image")}
                     />
                 </div>
                 <div className="form-group mb-3">
@@ -90,8 +61,7 @@ const ProductAdd = () => {
                         type="text"
                         className="form-control"
                         placeholder="Số lượng sản phẩm"
-                        name="instock"
-                        onInput={handleInput}
+                        {...register("instock")}
                     />
                 </div>
                 <button type="submit" className="btn btn-primary">

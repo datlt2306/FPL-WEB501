@@ -1,5 +1,6 @@
 1. Dùng AI tìm hiểu sự khác nhau giữa const, var, let. Cho một vài ví dụ.
 2. Khi nào sử dụng const, var, let??
+3. Giải thích tham chiếu và tham trị trong js
 
 Ví dụ:
 
@@ -15,7 +16,7 @@ const a = [10, 20, 30];
 a.push(40);
 ```
 
-Tại sao đoạn code này không lỗi??
+Câu hỏi: Tại sao đoạn code này không lỗi??
 
 ```js
 const user = {
@@ -23,6 +24,8 @@ const user = {
 };
 user.name = "Đạt";
 ```
+
+Câu hỏi:
 
 - Code có lỗi không?
 - Tại sao?

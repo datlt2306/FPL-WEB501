@@ -23,3 +23,27 @@ data.forEach((item, index) => {
     content += `<li>${item} - ${index}</li>`;
 })
 todos.innerHTML = content;
+
+
+const persons = [
+    {
+        name: "Dat",
+        age: 20
+    }, // user
+    {
+        name: "Kien",
+        age: 30,
+    },  // user
+
+    {
+        name: "Chinh",
+        age: 40
+    }];
+
+let userContent = "";
+persons.forEach((user) => {
+    userContent += `<li>${user.name} - ${user.age}</li>`
+})
+
+const userElement = document.querySelector('#users');
+userElement.innerHTML = userContent;

@@ -1,9 +1,7 @@
 // DOM - querySelector và querySelectorAll, getElementById
 
 const data = ['Việc 1', 'Việc 2', 'Việc 3', 'Việc 4'];
-
 const todos = document.querySelector('#todos');
-
 let content = "";
 // for loop
 // for (let i = 0; i < data.length; i++) {

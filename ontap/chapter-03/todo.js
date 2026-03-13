@@ -35,3 +35,5 @@ function renderTodos() {
 document.addEventListener('DOMContentLoaded', () => {
     renderTodos();
 })
+
+// Xây dựng các chức năng - CRUD todo

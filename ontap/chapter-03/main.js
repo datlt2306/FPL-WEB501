@@ -10,6 +10,7 @@ mainTitle.addEventListener('click', function () {
     mainTitle.style.background = 'red';
     // Thay đổi nội dung của phần tử
     mainTitle.innerText = 'Hello World 2';
+
     // Thêm class vào phần tử
     mainTitle.classList.add('common-title');
 })

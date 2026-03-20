@@ -63,18 +63,47 @@
 // const products = getProducts();
 // console.log(products);
 
+// const getProducts = (callback) => {
+//     console.log('Call API...')
+//     setTimeout(() => {
+//         callback([{ id: 1, name: "iPhone" }, { id: 2, name: "Samsung" }]);
+//     }, 2000)
+// }
+// getProducts((products) => {
+//     console.log('Danh sách sản phẩm!')
+//     products.forEach(item => {
+//         console.log('item', item.name)
+//     })
+// });
 
 
-
-const getProducts = (callback) => {
-    console.log('Call API...')
-    setTimeout(() => {
-        callback([{ id: 1, name: "iPhone" }, { id: 2, name: "Samsung" }]);
-    }, 2000)
+const getUrl = (url, callback) => {
+    const script = document.createElement('script');
+    script.src = url;
+    script.onload = () => callback(script);
+    script.onerror = () => callback(null, 'Error');
+    document.head.appendChild(script);
 }
-getProducts((products) => {
-    console.log('Danh sách sản phẩm!')
-    products.forEach(item => {
-        console.log('item', item.name)
-    })
+getUrl('https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js', function (script, error) {
+    if (error) {
+        console.log('Error', error)
+    } else {
+        getUrl('https://cdn.tailwindcss.com', function (script, error) {
+            if (error) {
+                console.log('Error', error)
+            } else {
+                getUrl('https://cdn.tailwindcss.com', function (script, error) {
+                    if (error) {
+                        console.log('Error', error)
+                    } else {
+                        console.log('Tải thư viện thành công!')
+                    }
+                })
+            }
+        });
+    }
 });
+
+
+// Promise
+// async/await

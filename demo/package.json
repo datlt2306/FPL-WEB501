@@ -1,0 +1,17 @@
+{
+    "name": "demo",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "dev:api": "json-server-auth --watch db.json"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "type": "commonjs",
+    "dependencies": {
+        "json-server": "^0.17.4",
+        "json-server-auth": "^2.1.0"
+    }
+}

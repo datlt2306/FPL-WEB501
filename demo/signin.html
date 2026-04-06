@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="container">
+        <h2>Đăng nhập</h2>
+        <form id="form">
+            <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input type="text" class="form-control" id="email" aria-describedby="email">
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" class="form-control" id="password" aria-describedby="password">
+            </div>
+            <button type="submit" class="btn btn-primary">Đăng nhập</button>
+        </form>
+    </div>
+
+    <script>
+        const form = document.querySelector('#form');
+
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const email = document.querySelector('#email').value;
+            const password = document.querySelector('#password').value;
+            if (!email) {
+                alert('Vui lòng nhập tên sản phẩm');
+                return;
+            }
+            if (!password) {
+                alert('Vui lòng nhập tên sản phẩm');
+                return;
+            }
+
+            const response = await fetch(`http://localhost:3000/signin`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    email, password
+                })
+            });
+            const data = await response.json();
+            console.log(data);
+            localStorage.setItem('token', data.accessToken)
+            console.log('Đăng nhập thành công');
+            window.location.href = "index.html";
+        })
+    </script>
+</body>
+
+</html>

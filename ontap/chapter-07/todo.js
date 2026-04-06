@@ -35,3 +35,5 @@ const renderTodos = async () => {
 document.addEventListener('DOMContentLoaded', () => {
     renderTodos();
 })
+
+// boilerplateư

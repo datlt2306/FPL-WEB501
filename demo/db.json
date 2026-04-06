@@ -1,0 +1,60 @@
+{
+  "products": [
+    {
+      "name": "1",
+      "price": "1",
+      "quantity": "1",
+      "imageUrl": "1",
+      "category": "Quần",
+      "id": 2
+    },
+    {
+      "name": "2",
+      "price": "2",
+      "quantity": "2",
+      "imageUrl": "2",
+      "category": "Quần",
+      "id": 3
+    },
+    {
+      "name": "3",
+      "price": "3",
+      "quantity": "3",
+      "imageUrl": "3",
+      "category": "Quần",
+      "id": 4
+    },
+    {
+      "name": "4",
+      "price": "4",
+      "quantity": "4",
+      "imageUrl": "4",
+      "category": "Quần",
+      "id": 5
+    },
+    {
+      "name": "5",
+      "price": "5",
+      "quantity": "5",
+      "imageUrl": "5",
+      "category": "Quần",
+      "id": 6
+    },
+    {
+      "name": "6",
+      "price": "6",
+      "quantity": "6",
+      "imageUrl": "6",
+      "category": "Quần",
+      "id": 7
+    }
+  ],
+  "users": [
+    {
+      "email": "admin@gmail.com",
+      "password": "$2a$10$6zvWySIVLBPe5rcYWxv1uOyRaFe/uhsBKr7otM48oBw7XjA.K3Nxy",
+      "username": "admin@gmail.com",
+      "id": 1
+    }
+  ]
+}
